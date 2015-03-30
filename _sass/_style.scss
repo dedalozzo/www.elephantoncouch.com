@@ -397,7 +397,7 @@ article {
   //border: 1px solid #FF0000;
   padding: 20px;
   margin: 0 10px;
-  @include box-shadow(0 3px 10px rgba(0,0,0,.1));
+  @include box-shadow(0 3px 10px #4B4B4B);
   font-size: 16px;
 }
 
