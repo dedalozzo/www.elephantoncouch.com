@@ -96,8 +96,7 @@ body {
 /* Sections */
 
 header,
-section,
-footer {
+section {
   float: left;
   width: 100%;
   clear: both;
@@ -231,11 +230,10 @@ h6:hover .header-link {
 footer {
   position: relative;
   text-align: left;
-  font-size: @font-size-small;
+  //font-size: @font-size-small;
   padding: 6px 10px 5px 10px;
-  color: @gray-darker;
-  #gradient > .vertical(@gray, darken(@gray, 5%));
-  //.border-radius(2px 2px 0 0);
+  //color: @gray-darker;
+  //#gradient > .vertical(@gray, darken(@gray, 5%));
   .border-radius(2px);
 }
 
@@ -266,7 +264,7 @@ footer > .copyright {
 footer > .version {
   margin-bottom: 0;
   color: black;
-  font-size: @font-size-mini;
+  //font-size: @font-size-mini;
   text-align: left;
 }
 
