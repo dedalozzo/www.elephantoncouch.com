@@ -4,23 +4,21 @@ title: Welcome
 permalink: /docs/home/
 ---
 
-This site aims to be a comprehensive guide to Jekyll. We’ll cover topics such
-as getting your site up and running, creating and managing your content,
-customizing the way your site works and looks, deploying to various
-environments, and give you some advice on participating in the future
-development of Jekyll itself.
+This site aims to be a comprehensive guide to Elephant on Couch. We’ll cover topics such
+as configuring the EoC Server, writing views directly in PHP, querying them, creating persistent objects,
+working with attachments, dealing with complex joins, and we'll give you some advice on participating in the future
+development of EoC itself.
 
-## So what is Jekyll, exactly?
+## So what is Elephant on Couch, exactly?
 
-Jekyll is a simple, blog-aware, static site generator. It takes a template
-directory containing raw text files in various formats, runs it through
-a converter (like [Markdown](http://daringfireball.net/projects/markdown/))
-and our [Liquid](https://github.com/Shopify/liquid/wiki) renderer, and
-spits out a complete, ready-to-publish static website suitable
-for serving with your favorite web server. Jekyll also happens to be the engine
-behind [GitHub Pages](http://pages.github.com), which means you can use Jekyll
-to host your project’s page, blog, or website from GitHub’s servers **for
-free**.
+Elephant on Couch is a suite of PHP tools to interact with [CouchDB](http://couchdb.apache.org/). The main component is 
+the [EoC Client](http://daringfireball.net/projects/markdown/) library, a 
+[Composer](https://getcomposer.org/) package, that's really simple to include in your project, to query documents, 
+store your objects, etc. Constructed upon the client, there is the [EoC CLI](http://daringfireball.net/projects/markdown/), 
+which help you to deal with day-to-day tasks, without the need to know the complex cURL's syntax.
+Least but not last, if you are not a JavaScript type, you can benefit of [EoC Server](http://daringfireball.net/projects/markdown/), 
+a PHP implementation of a CouchDB [query server](http://docs.couchdb.org/en/latest/config/query-servers.html) 
+(or view server), which allows the writing of your views in pure PHP.
 
 ## Helpful Hints
 
@@ -29,14 +27,13 @@ information that can make using Jekyll easier, more interesting, and less
 hazardous. Here’s what to look out for.
 
 <div class="note">
-  <h5>ProTips™ help you get more from Jekyll</h5>
-  <p>These are tips and tricks that will help you be a Jekyll wizard!</p>
+  <h5>ProTips™ help you get more from Elephant on Couch</h5>
+  <p>These are tips and tricks that will help you be a EoC wizard!</p>
 </div>
 
 <div class="note info">
   <h5>Notes are handy pieces of information</h5>
-  <p>These are for the extra tidbits sometimes necessary to understand
-     Jekyll.</p>
+  <p>These are for the extra tidbits sometimes necessary to understand EoC.</p>
 </div>
 
 <div class="note warning">
@@ -46,8 +43,7 @@ hazardous. Here’s what to look out for.
 
 <div class="note unreleased">
   <h5>You'll see this by a feature that hasn't been released</h5>
-  <p>Some pieces of this website are for future versions of Jekyll that
-    are not yet released.</p>
+  <p>Some pieces of this website are for future versions of EoC that are not yet released.</p>
 </div>
 
 If you come across anything along the way that we haven’t covered, or if you
