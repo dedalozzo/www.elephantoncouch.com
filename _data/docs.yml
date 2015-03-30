@@ -27,7 +27,7 @@
   - plugins
   - extras
 
-- title: cli
+- title: command-line interface
   docs:
   - github-pages
   - deployment-methods
