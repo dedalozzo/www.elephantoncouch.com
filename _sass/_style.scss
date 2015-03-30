@@ -53,37 +53,19 @@ header {
 /* Footer */
 
 footer {
-  font-size: 14px;
   padding: 6px 10px 5px 10px;
   border-bottom: 5px solid #8E98A6;
+
+  a {
+    color: #FF0000;
+  }
+
+  > .grid {
+    margin-top: 40px;
+    font-size: 14px;
+  }
 }
 
-footer > .grid {
-  margin-top: 40px;
-}
-
-footer img {
-  vertical-align: middle;
-}
-
-footer ul > li + li {
-  padding-left: 20px;
-}
-
-footer a {
-  color: #FF0000;
-}
-
-footer > .grid > .copyright {
-  line-height: normal;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-footer > .grid > .version {
-  margin-bottom: 0;
-  font-size: 12px;
-}
 
 nav {
 
