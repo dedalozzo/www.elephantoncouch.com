@@ -392,13 +392,13 @@ footer {
 
 article {
   //background-color: #929CAB;
-  //color: black;
   //@include border-radius(10px);
   border: 1px solid #FF0000;
   padding: 20px;
   margin: 0 10px;
   @include box-shadow(0 3px 10px rgba(0,0,0,.1));
   font-size: 16px;
+  text-shadow: none;
 }
 
 @media (max-width: 480px) {
