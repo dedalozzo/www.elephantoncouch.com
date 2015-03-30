@@ -7,7 +7,7 @@
   - structure
   - configuration
 
-- title: EoC Client
+- title: client
   docs:
   - frontmatter
   - posts
@@ -19,7 +19,7 @@
   - assets
   - migrations
 
-- title: EoC Server
+- title: server
   docs:
   - templates
   - permalinks
@@ -27,7 +27,7 @@
   - plugins
   - extras
 
-- title: EoC CLI
+- title: cli
   docs:
   - github-pages
   - deployment-methods
