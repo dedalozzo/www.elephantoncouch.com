@@ -31,66 +31,6 @@ body {
   visibility: hidden;
 }
 
-//! @file list.less
-//! @brief Common CSS for list items.
-//! @details This is the base class used to create e list in conjunction with another specialized class. There are many
-//! kinds of list: tabs, pills, the navigation bar, menus are all lists.
-//! @author Filippo F. Fadda
-//! @copyright 3F s.a.s. di Filippo Fadda
-
-
-// ---------------------------------------------------------------------------------------------------------------------
-// CSS
-// ---------------------------------------------------------------------------------------------------------------------
-.list {
-  margin: 0;
-  padding: 0;
-  display: table;
-  width: 100%;
-  font-weight: normal;
-  list-style: none;
-  text-align: left;
-}
-
-.list.auto {
-  width: auto;
-}
-
-.list > li {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: left;
-  //font-family: @font-family-base;
-  //font-size: @font-size-base;
-}
-
-.list > li > * {
-  white-space: nowrap;
-}
-
-// Removes the text decoration on links. Generally not used in a list.
-.list > li > a:hover {
-  text-decoration: none;
-}
-
-// Prevents IE8 from misplacing images. See https://github.com/h5bp/html5-boilerplate/issues/984#issuecomment-3985989.
-.list > li > * > img {
-  max-width: none;
-}
-
-// A space between list items, used instead of the .pull-right class.
-.list > li.space {
-  width: 100%;
-}
-
-// Top and bottom vertical aligns.
-.list > li.top {
-  vertical-align: top;
-}
-.list > li.bottom {
-  vertical-align: bottom !important;
-}
-
 
 /* Sections */
 
@@ -113,20 +53,13 @@ header {
 /* Footer */
 
 footer {
-  //position: relative;
-  text-align: left;
   font-size: 14px;
-  margin-top: 40px;
   padding: 6px 10px 5px 10px;
   border-bottom: 5px solid #8E98A6;
-  //color: @gray-darker;
-  //#gradient > .vertical(@gray, darken(@gray, 5%));
-  //.border-radius(2px);
 }
 
 footer > .grid {
-  //background-color: #8E98A6;
-  border-top: 5px solid #8E98A6;
+  margin-top: 40px;
 }
 
 footer img {
@@ -141,17 +74,15 @@ footer a {
   color: #FF0000;
 }
 
-footer > .copyright {
+footer > .grid > .copyright {
   line-height: normal;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-footer > .version {
+footer > .grid > .version {
   margin-bottom: 0;
-  color: black;
-  //font-size: @font-size-mini;
-  text-align: left;
+  font-size: 12px;
 }
 
 nav {
