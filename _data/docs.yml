@@ -7,7 +7,7 @@
   - structure
   - configuration
 
-- title: Your Content
+- title: EoC Client
   docs:
   - frontmatter
   - posts
@@ -19,7 +19,7 @@
   - assets
   - migrations
 
-- title: Customization
+- title: EoC Server
   docs:
   - templates
   - permalinks
@@ -27,7 +27,7 @@
   - plugins
   - extras
 
-- title: Deployment
+- title: EoC CLI
   docs:
   - github-pages
   - deployment-methods
