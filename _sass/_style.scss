@@ -11,6 +11,7 @@ body {
   color: #333333;
   background-color: #fff;
   border-top: 5px solid #8E98A6;
+  border-bottom: 5px solid #8E98A6;
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
   -webkit-font-feature-settings: "kern" 1;
   -moz-font-feature-settings: "kern" 1;
@@ -55,7 +56,6 @@ header {
 footer {
   //padding: 6px 10px 5px 10px;
   margin-top: 40px;
-  border-bottom: 5px solid #8E98A6;
 
   a {
     color: #FF0000;
