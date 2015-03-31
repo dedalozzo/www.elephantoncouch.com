@@ -4,102 +4,56 @@ title: Introduction
 permalink: /docs/introduction/
 ---
 
-Getting Jekyll installed and ready-to-go should only take a few minutes. If it
-ever becomes a pain in the ass, please [file an
-issue]({{ site.repository }}/issues/new) (or submit a pull request)
-describing the issue you encountered and how we might make the process easier.
+If you have landed on this site, you're probably a PHP developer who decided to use CouchDB for his next project.
+Maybe you are simply tired to work with MySQL or you want just try something new, like I did when I approached the
+first time to the NoSQL world. If any or all the premises are correct, you are in the right place.
+There are a bunch of client libraries for CouchDB,
+so you probably want to know why I decided to write a new one and I didn't use something already in place. The answer
+is pretty simple: they all suck. Yeah, I may sound a bit harsh here, but I'm not a diplomat and the truth must be said.
+CouchDB is an Erlang piece of code, using the worst protocol out there, a protocol everyone, even the illiterates, uses
+when surfing the web. Since CouchDB uses HTTP, you might be temped to use cURL, you'll start experiment some commands,
+and finally you land here where you can find some peace and finally... relax.
 
-### Requirements
+### The three musketeers
 
-Installing Jekyll is easy and straight-forward, but there are a few
-requirements you’ll need to make sure your system has before you start.
+EoC, acronym of Elephant on Couch, is a suite of tools, created to simplify your life. Once you have learned the basic 
+concepts around MapReduce, you are half the way in the process to embed CouchDB in your application. In fact, you need 
+to learn the protocol, dealing with cURL, and many other things you can't even imagine. EoC is gonna help you to focus 
+on your application, providing everything you need to be productive.
+There are three useful packages: a client, a server and a command-line interface. You are gonna use the server just in
+case you decide to write the MapReduce functions in PHP, else you don't need it. The CLI, instead, is provided for your
+own good, to avoid cURL and make easy the administration of your database instance. The client is the library you will
+use to handle CouchDB from inside your application.
 
-- [Ruby](http://www.ruby-lang.org/en/downloads/) (including development
-  headers)
-- [RubyGems](http://rubygems.org/pages/download)
-- Linux, Unix, or Mac OS X
-- [NodeJS](http://nodejs.org), or another JavaScript runtime (for
-  CoffeeScript support).
+## Client
 
-<div class="note info">
-  <h5>Running Jekyll on Windows</h5>
-  <p>
-    While Windows is not officially supported, it is possible to get it running
-    on Windows. Special instructions can be found on our
-    <a href="../windows/#installation">Windows-specific docs page</a>.
-  </p>
-</div>
+The client library is pretty cool. It can be configured to use cURL or native sockets: the first one is more stable, 
+the second one is a little bit faster. I recommend the cURL adapter, since you need stability overall, but if your 
+server doesn't have it installed, you can go with the socket adapter. If you are not satisfied with my own 
+implementation, you are free to implement an interface to provide your own adapter. We'll talk about it later.
+EoC Client is **not** like all the other libraries, just a wrapper on cURL to send commands via HTTP. EoC Client is an 
+abstract layer aims to add persistence to your classes. You can extend every single class of your project, in many ways 
+(we'll see this later), such as the instances of extended classes can be stored into CouchDB. Later, when you read a  
+document from the database, an instance of the same class you saved before is created.
+EoC Client comes with the ability to join queries and provide an interface to handle chunk respondes, when you need to 
+process data as soon they are read from the database. These are just a few incredible benefits of using this library. 
 
-## Install with RubyGems
+## Server
 
-The best way to install Jekyll is via
-[RubyGems](http://rubygems.org/pages/download). At the terminal prompt,
-simply run the following command to install Jekyll:
+As I said above you need the server just in case you want implement map and reduce functions in PHP. CouchDB is a 
+strange animal that comes with an embedded JavaScript query server, but you are free to configure it to use another
+engine, like the one I wrote, for PHP. To be honest JavaScript is faster than PHP, but the server I have developed is 
+pretty fast indeed, so give it a try. Keep your functions simple and remember that you can still implement the slow ones 
+using Erlang.
 
-{% highlight bash %}
-$ gem install jekyll
-{% endhighlight %}
+## CLI
 
-All of Jekyll’s gem dependencies are automatically installed by the above
-command, so you won’t have to worry about them at all. If you have problems
-installing Jekyll, check out the [troubleshooting](../troubleshooting/) page or
-[report an issue]({{ site.repository }}/issues/new) so the Jekyll
-community can improve the experience for everyone.
+Like the two above, the CLI is provided, for your convenience, in the form of a Composer package. It's really easy to
+install and like any other Unix command, it comes within an integrated help. Everything you do from Futon and 
+Fauxton, can be done using the CLI. To be honest you can do more, you can do more complex queries, etc.
 
-<div class="note info">
-  <h5>Installing Xcode Command-Line Tools</h5>
-  <p>
-    If you run into issues installing Jekyll's dependencies which make use of
-    native extensions and are using Mac OS X, you will need to install Xcode
-    and the Command-Line Tools it ships with. Download in
-    <code>Preferences &#8594; Downloads &#8594; Components</code>.
-  </p>
-</div>
+### Acknowledgments
 
-## Pre-releases
-
-In order to install a pre-release, make sure you have all the requirements
-installed properly and run:
-
-{% highlight bash %}
-gem install jekyll --pre
-{% endhighlight %}
-
-This will install the latest pre-release. If you want a particular pre-release,
-use the `-v` switch to indicate the version you'd like to install:
-
-{% highlight bash %}
-gem install jekyll -v '2.0.0.alpha.1'
-{% endhighlight %}
-
-If you'd like to install a development version of Jekyll, the process is a bit
-more involved. This gives you the advantage of having the latest and greatest,
-but may be unstable.
-
-{% highlight bash %}
-$ git clone git://github.com/jekyll/jekyll.git
-$ cd jekyll
-$ script/bootstrap
-$ bundle exec rake build
-$ ls pkg/*.gem | head -n 1 | xargs gem install -l
-{% endhighlight %}
-
-## Optional Extras
-
-There are a number of (optional) extra features that Jekyll supports that you
-may want to install, depending on how you plan to use Jekyll. These extras
-include LaTeX support, and the use of alternative content rendering engines.
-Check out [the extras page](../extras/) for more information.
-
-<div class="note">
-  <h5>ProTip™: Enable Syntax Highlighting</h5>
-  <p>
-    If you’re the kind of person who is using Jekyll, then chances are you’ll
-    want to enable syntax highlighting using <a href="http://pygments.org/">Pygments</a>
-    or <a href="https://github.com/jayferd/rouge">Rouge</a>. You should really
-    <a href="../templates/#code-snippet-highlighting">check out how to
-    do that</a> before you go any farther.
-  </p>
-</div>
-
-Now that you’ve got everything installed, let’s get to work!
+This job has been possible thank to the support of some well knows CouchDB developers, like Robert Newson, Noah Slater, 
+Alexander Shorin, and many others. A special gratitude to Tom Preston-Werner for the awesome Jekyll template, used for 
+this site, proudly hosted on GitHub Pages. 
