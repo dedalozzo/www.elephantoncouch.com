@@ -23,7 +23,7 @@ a PHP implementation of a CouchDB [query server](http://docs.couchdb.org/en/late
 ## Helpful Hints
 
 Throughout this guide there are a number of small-but-handy pieces of
-information that can make using Jekyll easier, more interesting, and less
+information that can make using EoC easier, more interesting, and less
 hazardous. Here’s what to look out for.
 
 <div class="note">
