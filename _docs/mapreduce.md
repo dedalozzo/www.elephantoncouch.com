@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Sites using Elephant on Couch
-permalink: /docs/sites/
+title: MapReduce
+permalink: /docs/mapreduce/
 ---
 
 It’s interesting to see what designs and features others have come up

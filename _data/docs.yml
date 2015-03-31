@@ -1,46 +1,67 @@
-- title: Getting Started
+- title: getting started
   docs:
   - home
-  - quickstart
-  - installation
-  - usage
-  - structure
-  - configuration
+  - introduction
+  - mapreduce
 
 - title: client
   docs:
-  - frontmatter
-  - posts
-  - drafts
-  - pages
-  - variables
-  - collections
-  - datafiles
-  - assets
-  - migrations
+  - introduction
+  - installation
+  - basic
+  - adaptors
+  - documents
+  - objects
+  - query-documents
+  - query-options
+  - views
+  - temporary-views
+  - attachments
+  - filters
+  - transactions
+  - statistics
+  - log-tail
+  - replication
+  - compactation
+  - advanced-topis
 
 - title: server
   docs:
-  - templates
-  - permalinks
-  - pagination
-  - plugins
-  - extras
+  - introduction
+  - installation
 
 - title: cli
   docs:
-  - github-pages
-  - deployment-methods
-  - continuous-integration
+  - introduction
+  - installation
+  - commands
+  - alldbs
+  - cleanup
+  - commit
+  - compact
+  - connect
+  - create
+  - delete
+  - help
+  - info
+  - list
+  - log
+  - query
+  - restart
+  - select
+  - status
+  - use
+  - uuids
+  - version
 
-- title: Miscellaneous
+- title: miscellaneous
   docs:
   - troubleshooting
   - sites
   - resources
-  - upgrading
+  - docs
 
-- title: Meta
+- title: meta
   docs:
   - contributing
   - history
