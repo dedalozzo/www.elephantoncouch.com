@@ -14,7 +14,7 @@ CouchDB is an Erlang piece of code, using the worst protocol out there, a protoc
 when surfing the web. Since CouchDB uses HTTP, you might be temped to use cURL, you'll start experiment some commands,
 and finally you land here where you can find some peace and finally... relax.
 
-### The three musketeers
+## The three musketeers
 
 EoC, acronym of Elephant on Couch, is a suite of tools, created to simplify your life. Once you have learned the basic 
 concepts around MapReduce, you are half the way in the process to embed CouchDB in your application. In fact, you need 
@@ -25,7 +25,7 @@ case you decide to write the MapReduce functions in PHP, else you don't need it.
 own good, to avoid cURL and make easy the administration of your database instance. The client is the library you will
 use to handle CouchDB from inside your application.
 
-## Client
+### Client
 
 The client library is pretty cool. It can be configured to use cURL or native sockets: the first one is more stable, 
 the second one is a little bit faster. I recommend the cURL adapter, since you need stability overall, but if your 
@@ -38,7 +38,7 @@ document from the database, an instance of the same class you saved before is cr
 EoC Client comes with the ability to join queries and provide an interface to handle chunk respondes, when you need to 
 process data as soon they are read from the database. These are just a few incredible benefits of using this library. 
 
-## Server
+### Server
 
 As I said above you need the server just in case you want implement map and reduce functions in PHP. CouchDB is a 
 strange animal that comes with an embedded JavaScript query server, but you are free to configure it to use another
@@ -46,13 +46,13 @@ engine, like the one I wrote, for PHP. To be honest JavaScript is faster than PH
 pretty fast indeed, so give it a try. Keep your functions simple and remember that you can still implement the slow ones 
 using Erlang.
 
-## CLI
+### CLI
 
 Like the two above, the CLI is provided, for your convenience, in the form of a Composer package. It's really easy to
 install and like any other Unix command, it comes within an integrated help. Everything you do from Futon and 
 Fauxton, can be done using the CLI. To be honest you can do more, you can do more complex queries, etc.
 
-### Acknowledgments
+## Acknowledgments
 
 This job has been possible thank to the support of some well knows CouchDB developers, like Robert Newson, Noah Slater, 
 Alexander Shorin, and many others. A special gratitude to Tom Preston-Werner for the awesome Jekyll template, used for 
