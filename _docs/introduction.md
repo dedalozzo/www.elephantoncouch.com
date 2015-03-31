@@ -35,7 +35,7 @@ EoC Client is **not** like all the other libraries, just a wrapper on cURL to se
 abstract layer aims to add persistence to your classes. You can extend every single class of your project, in many ways 
 (we'll see this later), such as the instances of extended classes can be stored into CouchDB. Later, when you read a  
 document from the database, an instance of the same class you saved before is created.
-EoC Client comes with the ability to join queries and provide an interface to handle chunk respondes, when you need to 
+EoC Client comes with the ability to join queries and provides an interface to handle chunk responses, when you need to 
 process data as soon they are read from the database. These are just a few incredible benefits of using this library. 
 
 ### Server
