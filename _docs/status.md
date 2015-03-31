@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: status
-permalink: /docs/cli/status/
+permalink: /docs/status/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

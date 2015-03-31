@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Persistent objects
-permalink: /docs/cli/objects/
+title: Documents
+permalink: /docs/documents/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

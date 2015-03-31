@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: uuids
-permalink: /docs/cli/uuids/
+permalink: /docs/uuids/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

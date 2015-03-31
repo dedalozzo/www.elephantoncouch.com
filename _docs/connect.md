@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: connect
-permalink: /docs/cli/connect/
+permalink: /docs/connect/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Query documents
-permalink: /docs/client/query-documents/
+title: Basic
+permalink: /docs/basic/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

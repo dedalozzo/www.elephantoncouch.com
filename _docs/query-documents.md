@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Log tail
-permalink: /docs/cli/log-tail/
+title: Query documents
+permalink: /docs/query-documents/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

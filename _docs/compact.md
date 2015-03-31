@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: compact
-permalink: /docs/cli/compact/
+permalink: /docs/compact/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

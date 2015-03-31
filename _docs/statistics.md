@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Adaptors
-permalink: /docs/client/adaptors/
+title: Statistics
+permalink: /docs/statistics/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

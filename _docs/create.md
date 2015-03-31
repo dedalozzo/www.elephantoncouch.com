@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: create
-permalink: /docs/cli/create/
+permalink: /docs/create/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

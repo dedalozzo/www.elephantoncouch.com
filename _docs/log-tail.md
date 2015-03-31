@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Replication
-permalink: /docs/client/replication/
+title: Log tail
+permalink: /docs/log-tail/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

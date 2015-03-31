@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Transactions
-permalink: /docs/client/transactions/
+title: Temporary views
+permalink: /docs/temporary-views/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

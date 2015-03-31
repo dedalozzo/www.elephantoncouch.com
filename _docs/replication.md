@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Attachments
-permalink: /docs/client/attachments/
+title: Replication
+permalink: /docs/replication/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Commands
-permalink: /docs/cli/commands/
+permalink: /docs/commands/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

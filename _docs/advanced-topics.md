@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Temporary views
-permalink: /docs/cli/temporary-views/
+title: Advanced topics
+permalink: /docs/advanced-topis/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it
