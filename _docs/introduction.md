@@ -54,6 +54,6 @@ Fauxton, can be done using the CLI. To be honest you can do more, you can do mor
 
 ## Acknowledgments
 
-This job has been possible thank to the support of some well knows CouchDB developers, like Robert Newson, Noah Slater, 
+This job has been possible thank to the support of some, well known, CouchDB developers, like Robert Newson, Noah Slater, 
 Alexander Shorin, and many others. A special gratitude to Tom Preston-Werner for the awesome Jekyll template, used for 
 this site, proudly hosted on GitHub Pages. 
