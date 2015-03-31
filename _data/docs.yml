@@ -35,24 +35,24 @@
   - introduction
   - cli-installation
   - commands
-  - alldbs
-  - cleanup
-  - commit
-  - compact
-  - connect
-  - create
-  - delete
-  - help
-  - info
-  - list
-  - log
-  - query
-  - restart
-  - select
-  - status
-  - use
-  - uuids
-  - version
+    - alldbs
+    - cleanup
+    - commit
+    - compact
+    - connect
+    - create
+    - delete
+    - help
+    - info
+    - list
+    - log
+    - query
+    - restart
+    - select
+    - status
+    - use
+    - uuids
+    - version
 
 - title: miscellaneous
   docs:
