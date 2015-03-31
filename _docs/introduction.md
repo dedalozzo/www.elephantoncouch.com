@@ -48,9 +48,10 @@ using Erlang.
 
 ### CLI
 
-Like the two above, the CLI is provided for your convenience in the form of a Composer package. It's really easy to
-install and like any other Unix command, it comes within an integrated help. Everything you do from Futon and 
-Fauxton, can be done using the CLI. To be honest you can do more, you can do more complex queries, etc.
+Like the two above, the CLI is provided for your convenience in the form of a Composer package. Like any other Unix 
+command, it comes within an integrated help. Everything you do from Futon and Fauxton, can be done using the CLI. This 
+library, unfortunately, uses Sh-Mop to keep the connection active and to remember the database in use.
+Since CouchDB doesn't provide a tool to execute queries, you'll find a right-hand man in this command-line interface.  
 
 ## Acknowledgments
 
