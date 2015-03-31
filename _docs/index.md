@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Welcome
+title: Relax
 permalink: /docs/home/
 ---
 
