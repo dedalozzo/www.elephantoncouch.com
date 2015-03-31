@@ -6,13 +6,13 @@ permalink: /docs/introduction/
 
 If you have landed on this site, you're probably a PHP developer who decided to use CouchDB for his next project.
 Maybe you are simply tired to work with MySQL or you want just try something new, like I did when I approached the
-first time to the NoSQL world. If any or all the premises are correct, you are in the right place.
+first time the NoSQL world. If any or all the premises are correct, you are in the right place.
 There are a bunch of client libraries for CouchDB,
 so you probably want to know why I decided to write a new one and I didn't use something already in place. The answer
 is pretty simple: they all suck. Yeah, I may sound a bit harsh here, but I'm not a diplomat and the truth must be said.
 CouchDB is an Erlang piece of code, using the worst protocol out there, a protocol everyone, even the illiterates, uses
 when surfing the web. Since CouchDB uses HTTP, you might be temped to use cURL, you'll start experiment some commands,
-and finally you land here where you can find some peace and finally... relax.
+and finally you land here where you can find some peace and... relax.
 
 ## The three musketeers
 
