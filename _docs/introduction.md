@@ -43,7 +43,7 @@ process data as soon they are read from the database. These are just a few incre
 As I said above you need the server just in case you want implement map and reduce functions in PHP. CouchDB is a 
 strange animal that comes with an embedded JavaScript query server, but you are free to configure it to use another
 engine, like the one I wrote, for PHP. To be honest JavaScript is faster than PHP, but the server I have developed is 
-pretty fast indeed, so give it a try. Keep your functions simple and remember that you can still implement the slow ones 
+pretty fast indeed, so give it a try. Keep your functions simple and remember that you can still rewrite the slow ones 
 using Erlang.
 
 ### CLI
