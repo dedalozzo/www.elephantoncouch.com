@@ -48,7 +48,7 @@ using Erlang.
 
 ### CLI
 
-Like the two above, the CLI is provided, for your convenience, in the form of a Composer package. It's really easy to
+Like the two above, the CLI is provided for your convenience in the form of a Composer package. It's really easy to
 install and like any other Unix command, it comes within an integrated help. Everything you do from Futon and 
 Fauxton, can be done using the CLI. To be honest you can do more, you can do more complex queries, etc.
 
