@@ -6,7 +6,6 @@
 
 - title: client
   docs:
-  - introduction
   - client-installation
   - basic
   - adaptors
@@ -27,12 +26,10 @@
 
 - title: server
   docs:
-  - introduction
   - server-installation
 
 - title: cli
   docs:
-  - introduction
   - cli-installation
   - commands
 
