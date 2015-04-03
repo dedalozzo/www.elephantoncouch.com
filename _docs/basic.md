@@ -7,7 +7,7 @@ permalink: /docs/basic/
 Once you have installed it, you're ready to use the client.
 
 
-{% highlight html %}
+{% highlight php %}
 <?php
 
 use EoC\Couch;
@@ -20,7 +20,7 @@ $couch->selectDb($config->couchdb->database);
 
 alternatively, you can chose the `NativeAdapter`:
 
-{% highlight html %}
+{% highlight php %}
 $couch = new Couch(new Adapter\NativeAdapter('127.0.0.1:5984', 'username', 'password'));
 {% endhighlight %}
 
