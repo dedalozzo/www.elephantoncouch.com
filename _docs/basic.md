@@ -15,7 +15,7 @@ use EoC\Adapter;
 
 $couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
 
-$couch->selectDb($config->couchdb->database);
+$couch->selectDb('database_name');
 {% endhighlight %}
 
 alternatively, you can chose the `NativeAdapter`:
