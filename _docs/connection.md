@@ -1,13 +1,13 @@
 ---
 layout: docs
-title: Basic
+title: Connect to the server
 permalink: /docs/connection/
 ---
 
 Once you have installed it, you're ready to use the client. In the example below has shown how to create a new 
 connection with the server and select a database.
 
-### Your first connection
+### Connect using the cURL adapter
 
 {% highlight php %}
 <?php
@@ -19,6 +19,8 @@ $couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username','passwor
 
 $couch->selectDb('database_name');
 {% endhighlight %}
+
+### Connect using the native adapter
 
 Alternatively, you can chose the `NativeAdapter`:
 
