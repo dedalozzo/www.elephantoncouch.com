@@ -35,7 +35,12 @@ $couch = new Couch(new Adapter\NativeAdapter('127.0.0.1:5984', 'username', 'pass
 $couch->selectDb('database_name');
 {% endhighlight %}
 
-As we said previously, if you are not quite happy with the provided adapters, you can implement the interface `IAdapter` 
-to create a new one.
+<div class="note">
+  <h5>ProTip™: Implement your own adapter</h5>
+  <p>
+    As we said previously, if you are not quite happy with the provided adapters, you can implement the interface `IAdapter` 
+    to create a new one.
+  </p>
+</div>
 
 Now that you've finally managed to create a connection, you are ready to work with documents.
