@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Getting started
-permalink: /docs/connection/
+permalink: /docs/getting-started/
 ---
 
 Once you have installed it, you're ready to use the client. In the example below has shown how to create a new 
