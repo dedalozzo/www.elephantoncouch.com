@@ -7,7 +7,7 @@
 - title: client
   docs:
   - client-installation
-  - basic
+  - connection
   - documents
   - objects
   - query-documents
