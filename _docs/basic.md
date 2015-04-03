@@ -4,8 +4,10 @@ title: Basic
 permalink: /docs/basic/
 ---
 
-Once you have installed it, you're ready to use the client.
+Once you have installed it, you're ready to use the client. In the example below has shown how to create a new 
+connection with the server and select a database.
 
+### Your first connection
 
 {% highlight php %}
 <?php
@@ -13,23 +15,29 @@ Once you have installed it, you're ready to use the client.
 use EoC\Couch;
 use EoC\Adapter;
 
-$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
+$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username','password'));
 
 $couch->selectDb('database_name');
 {% endhighlight %}
 
-alternatively, you can chose the `NativeAdapter`:
+Alternatively, you can chose the `NativeAdapter`:
 
 {% highlight php %}
+<?php
+
+use EoC\Couch;
+use EoC\Adapter;
+
 $couch = new Couch(new Adapter\NativeAdapter('127.0.0.1:5984', 'username', 'password'));
+
+$couch->selectDb('database_name');
 {% endhighlight %}
 
-Getting Jekyll installed and ready-to-go should only take a few minutes. If it
-ever becomes a pain in the ass, please [file an
-issue]({{ site.repository }}/issues/new) (or submit a pull request)
-describing the issue you encountered and how we might make the process easier.
+As we said previously, if you are not quite happy with the provided adapters, you can implement the interface `IAdapter` 
+to create a new one.
 
-### Requirements
+### Create and save a document
+
 
 Installing Jekyll is easy and straight-forward, but there are a few
 requirements you’ll need to make sure your system has before you start.
