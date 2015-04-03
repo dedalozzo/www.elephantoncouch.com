@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Connect to the server
+title: Getting started
 permalink: /docs/connection/
 ---
 
