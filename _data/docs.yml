@@ -1,4 +1,4 @@
-- title: getting started
+- title: Premises
   docs:
   - home
   - introduction
@@ -7,7 +7,7 @@
 - title: client
   docs:
   - client-installation
-  - connection
+  - getting-started
   - documents
   - objects
   - query-documents

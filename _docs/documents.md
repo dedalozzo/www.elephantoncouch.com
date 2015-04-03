@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Documents
+title: Work with documents
 permalink: /docs/documents/
 ---
 
