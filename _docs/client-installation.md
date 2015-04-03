@@ -10,13 +10,13 @@ To install EoC Client, you first need to install [Composer](http://getcomposer.o
 PHP, following those few [steps](http://getcomposer.org/doc/00-intro.md#installation-nix):
 
 {% highlight bash %}
-curl -s https://getcomposer.org/installer | php
+$ curl -s https://getcomposer.org/installer | php
 {% endhighlight %}
 
 You can run this command to easily access composer from anywhere on your system:
 
 {% highlight bash %}
-sudo mv composer.phar /usr/local/bin/composer
+$ sudo mv composer.phar /usr/local/bin/composer
 {% endhighlight %}
 
 
@@ -25,7 +25,7 @@ sudo mv composer.phar /usr/local/bin/composer
 Once you have installed Composer, it's easy install Lint.
 
 1. Edit your `composer.json` file, adding Lint to the require section:
-{% highlight bash %}
+{% highlight json %}
 {
     "require": {
         "3f/eoc-client": "dev-master"
