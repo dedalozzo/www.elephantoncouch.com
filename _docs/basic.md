@@ -4,6 +4,27 @@ title: Basic
 permalink: /docs/basic/
 ---
 
+Once you have installed it, you're ready to use the client.
+
+
+```php
+<?php
+
+use EoC\Couch;
+use EoC\Adapter;
+
+$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
+
+$couch->selectDb($config->couchdb->database);
+```
+
+alternatively, you can chose the `NativeAdapter`:
+
+```php
+$couch = new Couch(new Adapter\NativeAdapter('127.0.0.1:5984', 'username', 'password'));
+```
+ 
+ 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it
 ever becomes a pain in the ass, please [file an
 issue]({{ site.repository }}/issues/new) (or submit a pull request)
