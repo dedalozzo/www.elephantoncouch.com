@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Basic
-permalink: /docs/basic/
+permalink: /docs/connection/
 ---
 
 Once you have installed it, you're ready to use the client. In the example below has shown how to create a new 
