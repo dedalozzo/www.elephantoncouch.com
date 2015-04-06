@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Installation
-permalink: /docs/client-installation/
+permalink: /tutorial/client-installation/
 ---
 
 ## Composer Installation

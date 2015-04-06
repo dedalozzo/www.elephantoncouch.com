@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: use
-permalink: /docs/use/
+permalink: /tutorial/use/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

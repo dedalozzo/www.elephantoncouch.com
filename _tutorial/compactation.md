@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Compactation
-permalink: /docs/compactation/
+permalink: /tutorial/compactation/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

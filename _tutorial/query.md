@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: query
-permalink: /docs/query/
+permalink: /tutorial/query/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

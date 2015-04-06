@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: alldbs
-permalink: /docs/alldbs/
+permalink: /tutorial/alldbs/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

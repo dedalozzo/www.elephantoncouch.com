@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Introduction
-permalink: /docs/introduction/
+permalink: /tutorial/introduction/
 ---
 
 If you have landed on this site, you're probably a PHP developer who decided to use CouchDB for his next project.

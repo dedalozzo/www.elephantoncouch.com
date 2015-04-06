@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: cleanup
-permalink: /docs/cleanup/
+permalink: /tutorial/cleanup/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

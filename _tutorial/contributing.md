@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Contributing
-permalink: /docs/contributing/
+permalink: /tutorial/contributing/
 ---
 
 So you've got an awesome idea to throw into Jekyll. Great! Please keep the

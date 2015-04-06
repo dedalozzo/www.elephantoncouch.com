@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Statistics
-permalink: /docs/statistics/
+permalink: /tutorial/statistics/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

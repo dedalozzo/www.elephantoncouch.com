@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Advanced topics
-permalink: /docs/advanced-topis/
+permalink: /tutorial/advanced-topis/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: log
-permalink: /docs/log/
+permalink: /tutorial/log/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

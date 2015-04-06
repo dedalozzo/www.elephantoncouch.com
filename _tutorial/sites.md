@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Sites using Elephant on Couch
-permalink: /docs/sites/
+permalink: /tutorial/sites/
 ---
 
 It’s interesting to see what designs and features others have come up

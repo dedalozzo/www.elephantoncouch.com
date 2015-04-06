@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: commit
-permalink: /docs/commit/
+permalink: /tutorial/commit/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

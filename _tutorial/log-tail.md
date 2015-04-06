@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Log tail
-permalink: /docs/log-tail/
+permalink: /tutorial/log-tail/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

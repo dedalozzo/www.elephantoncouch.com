@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Transactions
-permalink: /docs/transactions/
+permalink: /tutorial/transactions/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

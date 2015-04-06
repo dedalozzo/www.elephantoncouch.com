@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: delete
-permalink: /docs/delete/
+permalink: /tutorial/delete/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it

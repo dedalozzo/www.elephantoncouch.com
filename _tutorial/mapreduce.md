@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: MapReduce
-permalink: /docs/mapreduce/
+permalink: /tutorial/mapreduce/
 ---
 
 To create the data model, using a standard RDBMS, you might use a data manipulation language, also know as DDL, or some 

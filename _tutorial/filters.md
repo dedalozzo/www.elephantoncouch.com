@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Filters
-permalink: /docs/filters/
+permalink: /tutorial/filters/
 ---
 
 Getting Jekyll installed and ready-to-go should only take a few minutes. If it
