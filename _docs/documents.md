@@ -127,7 +127,7 @@ class User extends Doc {
 Said this, which is very important, Doc comes with a feature to handle properties "a la" C#, helping to keep the 
 application design clean. That means, once you implement getters and setters for the User properties, you are done. 
 
-### Save our objects
+### Save the document
 
 Let's see how to create an user and save him to CouchDB.
 
