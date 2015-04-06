@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Relax
-permalink: /tutorial/home/
+permalink: /tutorial/relax/
 ---
 
 This site aims to be a comprehensive guide to Elephant on Couch. We’ll cover topics such
