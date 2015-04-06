@@ -38,20 +38,48 @@ class Comment {
 
 Let's add persistence:
 
+### Inherit from Doc
+
+This is the most simple case, just extends Doc class.
+
 {% highlight php %}
 <?php
 
 namespace MyPress;
 
+use EoC\Doc\Doc;
+
 class User extends Doc {
 }
+{% endhighlight %}
 
-// There are cases you can't inherits from Doc, because Article already extends another class, so use a the trait TDoc. 
+### Use TDoc trait
+
+There are cases you can't inherits from Doc, because Article already extends another class, so use a the trait TDoc.
+
+{% highlight php %}
+<?php
+
+namespace MyPress;
+
+use EoC\Doc\TDoc;
+
 class Article extends Post {
   use TDoc;
 }
+{% endhighlight %}
 
-// You have also the ability to implements the IDoc interface yourself.
+### Implement the IDoc interface
+
+You have also the ability to implements the IDoc interface yourself.
+
+{% highlight php %}
+<?php
+
+namespace MyPress;
+
+use EoC\Doc\IDoc;
+
 class Comment implements IDoc {
 
   /**
@@ -82,7 +110,6 @@ class Comment implements IDoc {
     ...
   }
 
-
   /**
    * @brief Returns `true` if the document has an identifier, `false` otherwise.
    * @return bool
@@ -91,7 +118,6 @@ class Comment implements IDoc {
     ...
   }
 
-
   /**
    * @brief Sets the document identifier. Mandatory and immutable.
    */
@@ -99,14 +125,12 @@ class Comment implements IDoc {
     ...
   }
 
-
   /**
    * @brief Unset the document identifier.
    */
   function unsetId() {
     ...
   }
-
 
   /**
    * @brief Sets the full name space class name into the the provided metadata into the metadata array.
@@ -118,7 +142,6 @@ class Comment implements IDoc {
     ...
   }
 
-
   /**
    * @brief Gets the document path.
    * @details Returns an empty string for standard document, `_local/` for local document and `_design/` for
@@ -129,7 +152,6 @@ class Comment implements IDoc {
     ...
   }
 
-
   /**
    * @brief Returns the document representation as a JSON object.
    * @return JSON object
@@ -137,7 +159,6 @@ class Comment implements IDoc {
   function asJson() {
     ...
   }
-
 
   /**
    * @brief Returns the document representation as an associative array.
