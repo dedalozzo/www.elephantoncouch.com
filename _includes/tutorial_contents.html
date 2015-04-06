@@ -1,8 +1,8 @@
 <div class="unit one-fifth hide-on-mobiles">
   <aside>
-    {% for section in site.data.docs %}
+    {% for section in site.data.tutorial %}
     <h4>{{ section.title }}</h4>
-    {% include docs_ul.html items=section.docs %}
+    {% include docs_ul.html items=section.tutorial %}
     {% endfor %}
   </aside>
 </div>
