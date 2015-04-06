@@ -14,12 +14,14 @@ document. The client can't work with any object, it requires the object is an in
 mind using EoC: to be stored, an object must be an instance of a `Doc` subclass. Well, we are talking about persistent 
 objects here, but I'm sure you put that all together yourself, did you? Is cool, isn't it? :-)
 
-### The `Doc` class
+## The `Doc` class
 
 You have the original idea to create a blog platform like WordPress, and you have chosen to do that using PHP and 
 CouchDB, because you desire to try something new, you're tired about SQL, ORM and all that stuff. Your application must 
 handle posts, users and comments, in the most simple way possible. Ah, almost forgot, you decided to call it MyPress.
-You may start creating these classes:
+You may start creating the User class:
+
+A class to represent a user.
 
 {% highlight php %}
 <?php
@@ -28,15 +30,14 @@ namespace MyPress;
 
 class User {
 }
-
-class Article {
-}
-
-class Comment {
-}
 {% endhighlight %}
 
-Let's add persistence:
+## Persistence in a breeze
+
+There are two ways for adding persistence to the above classes. The most simple one, that should normally be used, is to 
+inherit every class from the superclass Doc. Sometimes you have to deal with the fact that PHP doesn't support multiple 
+inheritance: this happens when a class, having already an ancestor, can't extend Doc. To handle a situation like this,
+we have created a trait, called TDoc, which implements every single method of the IDoc interface. That's all you need.
 
 ### Inherit from Doc
 
@@ -53,9 +54,10 @@ class User extends Doc {
 }
 {% endhighlight %}
 
-### Use TDoc trait
+### Or implement the IDoc interface using the TDoc trait
 
-There are cases you can't inherits from Doc, because Article already extends another class, so use a the trait TDoc.
+Since `User` inherits from `Person`, and PHP doesn't support multiple inheritance, let's implements IDoc interface, using 
+TDoc trait.
 
 {% highlight php %}
 <?php
@@ -64,108 +66,88 @@ namespace MyPress;
 
 use EoC\Doc\TDoc;
 
-class Article extends Post {
+class User extends Person implements IDoc {
   use TDoc;
 }
 {% endhighlight %}
 
-### Implement the IDoc interface
+### Add some properties to the `User` class
 
-You have also the ability to implements the IDoc interface yourself.
+Our class still doesn't have any property. At least, an user will have a first name and a last name, so let's add 
+getters and setters for these properties. It's important to note here, we don't use any protected members, on the 
+contrary methods relay on the `meta` array. Elephant on Couch just care about this array. Every single key/value inside 
+the array will be stored, while the other private or protected members are not taken into account, never.
 
 {% highlight php %}
 <?php
 
 namespace MyPress;
 
-use EoC\Doc\IDoc;
+use EoC\Doc\Doc;
 
-class Comment implements IDoc {
+class User extends Doc {
 
-  /**
-   * @brief Sets the object type.
-   * @param[in] string $value Usually the class name purged of his namespace.
-   */
-  function setType($value) {
-    ...
+  public function getFirstName() {
+    return $this->meta['firstName'];
   }
 
-
-  /**
-   * @brief Returns `true` if your document class already defines his type internally, `false` otherwise.
-   * @details Sometime happens you have two classes with the same name but located under different namespaces. In case,
-   * you should provide a type yourself for at least one of these classes, to avoid Couch::saveDoc() using the same type
-   * for both. Default implementation should return `false`.
-   * @return bool
-   */
-  function hasType() {
-    ...
+  public function issetFirstName() {
+    return isset($this->meta['firstName']);
   }
 
-  /**
-   * @brief Gets the document identifier.
-   * @return string
-   */
-  function getId() {
-    ...
+  public function setFirstName($value) {
+    $this->meta['firstName'] = $value;
   }
 
-  /**
-   * @brief Returns `true` if the document has an identifier, `false` otherwise.
-   * @return bool
-   */
-  function issetId() {
-    ...
+  public function unsetFirstName() {
+    if ($this->isMetadataPresent('firstName'))
+      unset($this->meta['firstName']);
   }
 
-  /**
-   * @brief Sets the document identifier. Mandatory and immutable.
-   */
-  function setId($value) {
-    ...
+  public function getLastName() {
+    return $this->meta['lastName'];
   }
 
-  /**
-   * @brief Unset the document identifier.
-   */
-  function unsetId() {
-    ...
+  public function issetLastName() {
+    return isset($this->meta['lastName']);
   }
 
-  /**
-   * @brief Sets the full name space class name into the the provided metadata into the metadata array.
-   * @details The method Couch.getDoc will use this to create an object of the same class you previously stored using
-   * Couch::saveDoc() method.
-   * @param[in] string $value The full namespace class name, like returned from get_class() function.
-   */
-  function setClass($value) {
-    ...
+  public function setLastName($value) {
+    $this->meta['lastName'] = $value;
   }
 
-  /**
-   * @brief Gets the document path.
-   * @details Returns an empty string for standard document, `_local/` for local document and `_design/` for
-   * design document.
-   * @return string
-   */
-  function getPath() {
-    ...
+  public function unsetLastName() {
+    if ($this->isMetadataPresent('lastName'))
+      unset($this->meta['lastName']);
   }
 
-  /**
-   * @brief Returns the document representation as a JSON object.
-   * @return JSON object
-   */
-  function asJson() {
-    ...
-  }
-
-  /**
-   * @brief Returns the document representation as an associative array.
-   * @return array An associative array
-   */
-  public function asArray() {
-    ...
-  }
 }
 {% endhighlight %}
+
+Said this, which is very important, Doc comes with a feature to handle properties "a la" C#, helping to keep the 
+application design clean. That means, once you implement getters and setters for the User properties, you are done. 
+
+### Save our objects
+
+Let's see how to create an user and save him to CouchDB.
+
+{% highlight php %}
+<?php
+
+use EoC\Couch;
+use EoC\Adapter;
+
+$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username','password'));
+$couch->selectDb('database_name');
+
+$user = new User();
+$user->firstName = 'Filippo';
+$user->lastName = 'Fadda';
+
+$couch->saveDoc($user);
+{% endhighlight %}
+
+As you can see in the above example, `firstName` and `lastName` behave like public properties, even if they aren't such. 
+The `saveDoc` method is all we need to store the user into CouchDB.
+
+In a minute we have created a class, whose instances are now persistent.
