@@ -453,9 +453,8 @@ li > code,
 h5 > code,
 .note > code {
   background-color: #333;
-  line-height: 1.2em;
-  padding-left: 2px;
-  padding-right: 2px;
+  line-height: 1em;
+  padding: 2px 4px 2px 4px;
   color: #fff;
   @include border-radius(2px);
 }
