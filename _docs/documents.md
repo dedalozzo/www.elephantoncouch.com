@@ -4,102 +4,147 @@ title: Working with documents
 permalink: /docs/documents/
 ---
 
-Getting Jekyll installed and ready-to-go should only take a few minutes. If it
-ever becomes a pain in the ass, please [file an
-issue]({{ site.repository }}/issues/new) (or submit a pull request)
-describing the issue you encountered and how we might make the process easier.
+CouchDB is a document database: it works with documents. It's not like MySQL where you have tables, it's not even like 
+any key/value store. CouchDB is a database capable to store and retrieves documents. A document is a JSON representation 
+of a data set, simply as that. Of course in PHP we don't have the notion of document, instead we have objects, instances 
+of classes. That's why the EoC library provides a new class called `Doc`. Any instance of this powerful class 
+actually of any subclass) encapsulates a JSON representation of the object itself and can be stored into CouchDB, like a 
+document. The client can't work with any object, it requires the object is an instance of a class that inherits from 
+`Doc` (or uses a trait, or implements a special interface). This is the most important concept you must keep in 
+mind using EoC: to be stored, an object must be an instance of a `Doc` subclass. Well, we are talking about persistent 
+objects here, but I'm sure you put that all together yourself, did you? Is cool, isn't it? :-)
 
-### Requirements
+### The `Doc` class
 
-Installing Jekyll is easy and straight-forward, but there are a few
-requirements you’ll need to make sure your system has before you start.
+You have the original idea to create a blog platform like WordPress, and you have chosen to do that using PHP and 
+CouchDB, because you desire to try something new, you're tired about SQL, ORM and all that stuff. Your application must 
+handle posts, users and comments, in the most simple way possible. Ah, almost forgot, you decided to call it MyPress.
+You may start creating these classes:
 
-- [Ruby](http://www.ruby-lang.org/en/downloads/) (including development
-  headers)
-- [RubyGems](http://rubygems.org/pages/download)
-- Linux, Unix, or Mac OS X
-- [NodeJS](http://nodejs.org), or another JavaScript runtime (for
-  CoffeeScript support).
+{% highlight php %}
+<?php
 
-<div class="note info">
-  <h5>Running Jekyll on Windows</h5>
-  <p>
-    While Windows is not officially supported, it is possible to get it running
-    on Windows. Special instructions can be found on our
-    <a href="../windows/#installation">Windows-specific docs page</a>.
-  </p>
-</div>
+namespace MyPress;
 
-## Install with RubyGems
+class User {
+}
 
-The best way to install Jekyll is via
-[RubyGems](http://rubygems.org/pages/download). At the terminal prompt,
-simply run the following command to install Jekyll:
+class Article {
+}
 
-{% highlight bash %}
-$ gem install jekyll
+class Comment {
+}
 {% endhighlight %}
 
-All of Jekyll’s gem dependencies are automatically installed by the above
-command, so you won’t have to worry about them at all. If you have problems
-installing Jekyll, check out the [troubleshooting](../troubleshooting/) page or
-[report an issue]({{ site.repository }}/issues/new) so the Jekyll
-community can improve the experience for everyone.
+Let's add persistence:
 
-<div class="note info">
-  <h5>Installing Xcode Command-Line Tools</h5>
-  <p>
-    If you run into issues installing Jekyll's dependencies which make use of
-    native extensions and are using Mac OS X, you will need to install Xcode
-    and the Command-Line Tools it ships with. Download in
-    <code>Preferences &#8594; Downloads &#8594; Components</code>.
-  </p>
-</div>
+{% highlight php %}
+<?php
 
-## Pre-releases
+namespace MyPress;
 
-In order to install a pre-release, make sure you have all the requirements
-installed properly and run:
+class User extends Doc {
+}
 
-{% highlight bash %}
-gem install jekyll --pre
+// There are cases you can't inherits from Doc, because Article already extends another class, so use a the trait TDoc. 
+class Article extends Post {
+  use TDoc;
+}
+
+// You have also the ability to implements the IDoc interface yourself.
+class Comment implements IDoc {
+
+  /**
+   * @brief Sets the object type.
+   * @param[in] string $value Usually the class name purged of his namespace.
+   */
+  function setType($value) {
+    ...
+  }
+
+
+  /**
+   * @brief Returns `true` if your document class already defines his type internally, `false` otherwise.
+   * @details Sometime happens you have two classes with the same name but located under different namespaces. In case,
+   * you should provide a type yourself for at least one of these classes, to avoid Couch::saveDoc() using the same type
+   * for both. Default implementation should return `false`.
+   * @return bool
+   */
+  function hasType() {
+    ...
+  }
+
+  /**
+   * @brief Gets the document identifier.
+   * @return string
+   */
+  function getId() {
+    ...
+  }
+
+
+  /**
+   * @brief Returns `true` if the document has an identifier, `false` otherwise.
+   * @return bool
+   */
+  function issetId() {
+    ...
+  }
+
+
+  /**
+   * @brief Sets the document identifier. Mandatory and immutable.
+   */
+  function setId($value) {
+    ...
+  }
+
+
+  /**
+   * @brief Unset the document identifier.
+   */
+  function unsetId() {
+    ...
+  }
+
+
+  /**
+   * @brief Sets the full name space class name into the the provided metadata into the metadata array.
+   * @details The method Couch.getDoc will use this to create an object of the same class you previously stored using
+   * Couch::saveDoc() method.
+   * @param[in] string $value The full namespace class name, like returned from get_class() function.
+   */
+  function setClass($value) {
+    ...
+  }
+
+
+  /**
+   * @brief Gets the document path.
+   * @details Returns an empty string for standard document, `_local/` for local document and `_design/` for
+   * design document.
+   * @return string
+   */
+  function getPath() {
+    ...
+  }
+
+
+  /**
+   * @brief Returns the document representation as a JSON object.
+   * @return JSON object
+   */
+  function asJson() {
+    ...
+  }
+
+
+  /**
+   * @brief Returns the document representation as an associative array.
+   * @return array An associative array
+   */
+  public function asArray() {
+    ...
+  }
+}
 {% endhighlight %}
-
-This will install the latest pre-release. If you want a particular pre-release,
-use the `-v` switch to indicate the version you'd like to install:
-
-{% highlight bash %}
-gem install jekyll -v '2.0.0.alpha.1'
-{% endhighlight %}
-
-If you'd like to install a development version of Jekyll, the process is a bit
-more involved. This gives you the advantage of having the latest and greatest,
-but may be unstable.
-
-{% highlight bash %}
-$ git clone git://github.com/jekyll/jekyll.git
-$ cd jekyll
-$ script/bootstrap
-$ bundle exec rake build
-$ ls pkg/*.gem | head -n 1 | xargs gem install -l
-{% endhighlight %}
-
-## Optional Extras
-
-There are a number of (optional) extra features that Jekyll supports that you
-may want to install, depending on how you plan to use Jekyll. These extras
-include LaTeX support, and the use of alternative content rendering engines.
-Check out [the extras page](../extras/) for more information.
-
-<div class="note">
-  <h5>ProTip™: Enable Syntax Highlighting</h5>
-  <p>
-    If you’re the kind of person who is using Jekyll, then chances are you’ll
-    want to enable syntax highlighting using <a href="http://pygments.org/">Pygments</a>
-    or <a href="https://github.com/jayferd/rouge">Rouge</a>. You should really
-    <a href="../templates/#code-snippet-highlighting">check out how to
-    do that</a> before you go any farther.
-  </p>
-</div>
-
-Now that you’ve got everything installed, let’s get to work!
