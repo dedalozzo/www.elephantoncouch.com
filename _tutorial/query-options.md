@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: Advanced query options
 permalink: /tutorial/query-options/
 ---

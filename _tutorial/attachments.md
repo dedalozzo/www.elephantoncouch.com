@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: Attachments
 permalink: /tutorial/attachments/
 ---

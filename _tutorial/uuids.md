@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: uuids
 permalink: /tutorial/uuids/
 ---

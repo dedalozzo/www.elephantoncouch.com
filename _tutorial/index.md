@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: Relax
 permalink: /tutorial/home/
 ---

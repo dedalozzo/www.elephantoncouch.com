@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: Getting started
 permalink: /tutorial/getting-started/
 ---

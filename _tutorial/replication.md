@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: Replication
 permalink: /tutorial/replication/
 ---

@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: query
 permalink: /tutorial/query/
 ---

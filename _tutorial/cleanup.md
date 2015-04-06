@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: cleanup
 permalink: /tutorial/cleanup/
 ---

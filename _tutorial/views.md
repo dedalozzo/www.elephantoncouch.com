@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: Views
 permalink: /tutorial/views/
 ---

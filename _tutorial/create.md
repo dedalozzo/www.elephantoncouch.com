@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: create
 permalink: /tutorial/create/
 ---

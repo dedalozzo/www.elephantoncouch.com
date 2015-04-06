@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: Configuration
 permalink: /tutorial/configuration/
 ---

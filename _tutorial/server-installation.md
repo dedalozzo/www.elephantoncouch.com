@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: Installation
 permalink: /tutorial/server-installation/
 ---

@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: Filters
 permalink: /tutorial/filters/
 ---

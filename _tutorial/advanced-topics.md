@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: Advanced topics
 permalink: /tutorial/advanced-topis/
 ---

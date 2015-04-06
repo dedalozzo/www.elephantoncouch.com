@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: Log tail
 permalink: /tutorial/log-tail/
 ---

@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: tutorial
 title: Sites using Elephant on Couch
 permalink: /tutorial/sites/
 ---
