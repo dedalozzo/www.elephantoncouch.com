@@ -1,11 +1,11 @@
 - title: Premises
-  docs:
+  tutorial:
   - home
   - introduction
   - mapreduce
 
 - title: client
-  docs:
+  tutorial:
   - client-installation
   - getting-started
   - documents
@@ -21,23 +21,23 @@
   - advanced-topics
 
 - title: server
-  docs:
+  tutorial:
   - server-installation
   - debugging
 
 - title: cli
-  docs:
+  tutorial:
   - cli-installation
   - commands
 
 - title: miscellaneous
-  docs:
+  tutorial:
   - troubleshooting
   - sites
   - resources
   - docs
 
 - title: meta
-  docs:
+  tutorial:
   - contributing
   - history
