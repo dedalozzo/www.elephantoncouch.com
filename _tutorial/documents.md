@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Documents
-permalink: /docs/documents/
+permalink: /tutorial/documents/
 ---
 
 CouchDB is a document database: it works with documents. It's not like MySQL where you have tables, it's not even like 

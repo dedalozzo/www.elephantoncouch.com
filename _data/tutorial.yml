@@ -10,7 +10,6 @@
   - getting-started
   - documents
   - views
-  - query-documents
   - query-options
   - attachments
   - filters
@@ -19,11 +18,12 @@
   - log-tail
   - replication
   - compactation
-  - advanced-topis
+  - advanced-topics
 
 - title: server
   docs:
   - server-installation
+  - debugging
 
 - title: cli
   docs:

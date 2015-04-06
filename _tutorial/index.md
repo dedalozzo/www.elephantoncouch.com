@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Relax
-permalink: /docs/home/
+permalink: /tutorial/home/
 ---
 
 This site aims to be a comprehensive guide to Elephant on Couch. We’ll cover topics such
