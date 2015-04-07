@@ -83,6 +83,7 @@ TDoc trait.
 
 namespace MyPress;
 
+use EoC\Doc\IDoc;
 use EoC\Doc\TDoc;
 
 class User extends Person implements IDoc {
