@@ -45,7 +45,11 @@ section {
 
 header {
   margin-top: 20px;
-  
+
+  h1 > a {
+    padding-left: 23px;
+  }
+
   h1 > a > img {
     border-left: 5px solid #8E98A6;
   }
