@@ -452,10 +452,10 @@ p > nobr > code,
 li > code,
 h5 > code,
 .note > code {
-  background-color: #333;
+  background-color: #8E98A6;
   line-height: 1em;
   padding: 4px 4px 3px 4px;
-  color: #fff;
+  color: #333333;
   @include border-radius(2px);
 }
 
@@ -625,7 +625,7 @@ code.output {
 /* Note types */
 
 .note {
-  margin: 20px 0 0 -10px;
+  margin: 20px 20px 0 -10px;
   padding: 20px;
   //@include border-radius(0 5px 5px 0);
   position: relative;
