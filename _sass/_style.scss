@@ -44,6 +44,9 @@ section {
 /* Header */
 
 header {
+  h1 {
+    border-left: 5px solid #8E98A6;
+  }
 
   h1,
   nav { display: inline-block; }
