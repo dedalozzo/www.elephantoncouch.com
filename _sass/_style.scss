@@ -446,17 +446,21 @@ code {
 }
 
 .highlight,
-p > pre,
-p > code,
-p > nobr > code,
 li > code,
 h5 > code,
 .note > code {
-  background-color: #8E98A6;
+  background-color: #333333;
   line-height: 1em;
-  padding: 4px 4px 3px 4px;
-  color: #333333;
+  color: white;
   @include border-radius(2px);
+}
+
+p > code,
+p > pre,
+p > nobr > code {
+  padding: 3px 3px 2px 3px;
+  background-color: #F2F2F2;
+  color: #333333;
 }
 
 .note code {
@@ -625,7 +629,7 @@ code.output {
 /* Note types */
 
 .note {
-  margin: 20px 20px 0 -10px;
+  margin: 40px 0 0 -50px;
   padding: 20px;
   //@include border-radius(0 5px 5px 0);
   position: relative;
