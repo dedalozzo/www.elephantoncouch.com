@@ -458,7 +458,7 @@ h5 > code,
 p > code,
 p > pre,
 p > nobr > code {
-  padding: 2px 4px 2px 4px;
+  padding: 2px 4px 1px 4px;
   background-color: #F4F4F4;
   color: #656565;
 }
@@ -482,7 +482,7 @@ p > nobr > code {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
 
 a {
@@ -632,8 +632,9 @@ code.output {
 /* Note types */
 
 .note {
-  margin: 40px 0 0 -50px;
+  margin: 30px 0 0 20px;
   padding: 20px;
+  padding-left: 40px;
   //@include border-radius(0 5px 5px 0);
   position: relative;
   @include box-shadow(0 1px 5px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255,255,255,.2), inset 0 -1px 0 rgba(0,0,0,.3));
