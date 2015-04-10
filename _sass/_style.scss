@@ -171,6 +171,7 @@ article {
   padding: 20px;
   margin: 0 10px;
   border: 5px solid #8E98A6;
+  @include border-radius(1px);
   font-size: 14px;
 }
 
