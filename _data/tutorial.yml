@@ -17,7 +17,7 @@
   - statistics
   - log-tail
   - replication
-  - compactation
+  - compaction
   - advanced-topics
 
 - title: server
