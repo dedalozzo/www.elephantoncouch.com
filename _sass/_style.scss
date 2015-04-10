@@ -89,14 +89,14 @@ nav {
       @include transition(all .25s);
 
       &:hover {
-        border-bottom: 5px solid #8E98A6;
+        border-bottom: 4px solid #8E98A6;
       }
     }
 
     &.current {
       a {
         color: #333333;
-        border-bottom: 5px solid #8E98A6;
+        border-bottom: 4px solid #8E98A6;
      }
     }
   }
@@ -176,7 +176,7 @@ article {
   //border: 1px solid #FF0000;
   padding: 20px;
   margin: 0 10px;
-  border: 5px solid #8E98A6;
+  border: 4px solid #8E98A6;
   @include border-radius(2px);
   font-size: 14px;
 }
@@ -208,7 +208,7 @@ aside {
     padding: 0 0 10px 30px;
     margin-left: -30px;
     display: inline-block;
-    border-bottom: 5px solid #8E98A6;
+    border-bottom: 4px solid #8E98A6;
   }
 
   ul {
