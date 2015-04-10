@@ -12,3 +12,8 @@ repository: https://github.com/dedalozzo/www.elephantoncouch.com
 collections:
   tutorial:
     output: true
+    
+defaults:
+  -
+    scope:
+      path: ""
