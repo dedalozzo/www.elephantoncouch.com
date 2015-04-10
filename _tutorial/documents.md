@@ -251,6 +251,10 @@ $user = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
 echo $user->firstName . ' ' . $user->lastName;
 {% endhighlight %}
 
+It's important to note the constant `Couch::STD_DOC_PATH`, which is equivalent to an empty string. Since both documents, 
+local and design documents resides on the same database, they use different paths. Standard documents don't have one, design 
+documents are prefixed by `_design/`, and local documents by `_local/`. You don't have to remember them, just use the 
+following constants: `Couch::STD_DOC_PATH`, `Couch::LOCAL_DOC_PATH`, `Couch::DESIGN_DOC_PATH`.
 
 ### Updating documents
 
@@ -279,6 +283,7 @@ To delete a document is necessary know three things: the document path, the ID a
 There are two ways to delete a document. The first one is simply mark the document as deleted and save it. The second 
 one implies a call to the `deleteDoc()` method.
 
+{% highlight php %}
 <?php
 
 namespace MyPress;
