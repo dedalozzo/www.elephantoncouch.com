@@ -79,7 +79,8 @@ nav {
       font-weight: 900;
       font-size: 17px;
       padding: 0.4em 0.8em;
-      text-shadow: none;
+      //text-shadow: none;
+      text-shadow: 0 1px 1px rgba(0,0,0,.5);
       text-transform: uppercase;
       @include transition(all .25s);
 
