@@ -15,6 +15,24 @@ application; the only constraints are that it must be unique within the database
 In addition, a document may have attachments, named binary blobs that are useful for storing media files or 
 other unstructured data. We'll talk about attachments in a a dedicated chapter.
 
+CouchDB uses a data structure called a B-tree to index its documents and views. In particular CouchDB uses an append-only
+log file to write documents. Since the log file is append-only CouchDB keeps track of the change history of every document, 
+as a series of revisions, implementing [MVCC](http://en.wikipedia.org/wiki/Multiversion_concurrency_control).
+A document is never really updated or deleted. This can be achieved only through a process called compaction.
+B-trees are used to store the main database file as well as the views. Both, the database itself and the views are B-trees.
+The pusrpose a the Multi-Version Concurrency Control is not to be able to access old data, but rather to assist the 
+replicator in deciding what data to synchronize and what documents have conflicts. Every time a document is created or 
+updated, it is assigned a new unique revision ID. The IDs of past revisions are available, and the contents of past 
+revisions may be available, but only if the revision was created locally and the database has not yet been compacted.
+
+To summarize, a document has the following attributes:
+
+- a document ID;
+- a current revision ID (which changes every time the document is updated);
+- a history of past revision IDs;
+- a body in the form of a JSON object, i.e. a set of key/value pairs;
+- zero or more named binary attachments.
+
 ## Document + object = a single coherent whole
 
 As we know, the notion of document in PHP is missing, but we have objects, instances of classes. On the other hand, 
@@ -145,7 +163,8 @@ class User extends Doc {
 {% endhighlight %}
 
 Said this, which is very important, Doc comes with a feature to handle properties "a la" C#, helping to keep the 
-application design clean. That means, once you implement getters and setters for the User properties, you are done. 
+application design clean. That means, once you implement getters and setters for the User properties, you are done.
+In a minute we have created a class, whose instances are now persistent.
 
 ## Creating, Reading, Updating and Deleting documents (CRUD)
 
@@ -163,7 +182,7 @@ namespace MyPress;
 use EoC\Couch;
 use EoC\Adapter;
 
-$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username','password'));
+$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
 $couch->selectDb('database_name');
 
 $user = new User();
@@ -176,10 +195,131 @@ $couch->saveDoc($user);
 As you can see in the above example, `firstName` and `lastName` behave like public properties, even if they aren't such. 
 The `saveDoc` method is all we need to store the user into CouchDB.
 
-In a minute we have created a class, whose instances are now persistent.
+You must note we didn't provide an ID for the user, because EoC will generate one for us. The ID is somewhat important 
+because, as we'll see later, it is the only way to retrieve a document from the database. We strongly suggest to use 
+a universal unique identifier [UUID](http://en.wikipedia.org/wiki/Universally_unique_identifier), but are free to 
+assign whater you want, just remember the ID **must be** unique. In our example we use `77d09b72d0cdbfd73255a9a158000dcf`.  
+
+{% highlight php %}
+<?php
+
+namespace MyPress;
+
+use EoC\Couch;
+use EoC\Adapter;
+
+$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
+$couch->selectDb('database_name');
+
+$user = new User();
+$user->id = '77d09b72d0cdbfd73255a9a158000dcf';
+$user->firstName = 'John';
+$user->lastName = 'Smith';
+
+$couch->saveDoc($user);
+{% endhighlight %}
+
+For your convenience EoC provides a static method to generate a UUID. 
+
+{% highlight php %}
+<?php
+
+use EoC\Generator\UUID;
+
+$uuid = UUID::generate(UUID::UUID_RANDOM, UUID::FMT_STRING);
+{% endhighlight %}
 
 ### Reading documents
 
+In the example above we created an user instance that we stored into CouchDB. Let's see how we can retrieve the same 
+user from the database, using `77d09b72d0cdbfd73255a9a158000dcf`, the ID we previously assigned.
+
+{% highlight php %}
+<?php
+
+namespace MyPress;
+
+use EoC\Couch;
+use EoC\Adapter;
+
+$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
+$couch->selectDb('database_name');
+
+$user = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
+
+// This will print John Smith.
+echo $user->firstName . ' ' . $user->lastName;
+{% endhighlight %}
+
+<div class="note">
+  <h5>ProTip™: Use document paths constants</h5>
+  <p>
+    It's important to note the constant `Couch::STD_DOC_PATH`, which is equivalent to ``. Since both documents, local and 
+    design documents resides on the same database, they use different paths. Standard documents don't have one, design 
+    documents are prefixed by `_design/`, and local documents by `_local/`. You don't have to remember them, just use the 
+    following constants: `Couch::STD_DOC_PATH`, `Couch::LOCAL_DOC_PATH`, `Couch::DESIGN_DOC_PATH`.
+  </p>
+</div>
+
 ### Updating documents
 
+Updating a document is easy like to create a new one. Let's see how to modify the first name of the previously created user.
+
+{% highlight php %}
+<?php
+
+namespace MyPress;
+
+use EoC\Couch;
+use EoC\Adapter;
+
+$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
+$couch->selectDb('database_name');
+
+$user = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
+$user->firstName = 'Peter';
+
+$couch->saveDoc($user);
+{% endhighlight %}
+
 ### Deleting documents
+
+To delete a document is necessary know three things: the document path, the ID and finally its revision.
+There are two ways to delete a document. The first one is simply mark the document as deleted and save it. The second 
+one implies a call to the `deleteDoc()` method.
+
+<?php
+
+namespace MyPress;
+
+use EoC\Couch;
+use EoC\Adapter;
+
+$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
+$couch->selectDb('database_name');
+
+$user = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
+$user->delete();
+
+$couch->saveDoc($user);
+{% endhighlight %}
+
+Alternatively:
+
+{% highlight php %}
+<?php
+
+namespace MyPress;
+
+use EoC\Couch;
+use EoC\Adapter;
+
+$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
+$couch->selectDb('database_name');
+
+$user = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
+
+$couch->deleteDoc(Couch::STD_DOC_PATH, $user->id, $user->rev);
+{% endhighlight %}
+
+It's important to note that the document isn't really deleted, it will exist until the next compaction.
