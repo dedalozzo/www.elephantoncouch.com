@@ -2,6 +2,7 @@
 layout: tutorial
 title: Documents
 permalink: /tutorial/documents/
+path: /porcodio/
 ---
 
 CouchDB is a document database: it works with documents. It's not like MySQL where you have tables, it's not even like 
