@@ -11,5 +11,5 @@ repository: https://github.com/dedalozzo/www.elephantoncouch.com
 
 collections:
   tutorial:
-    path: ""
+    path: "/porcodio"
     output: true
