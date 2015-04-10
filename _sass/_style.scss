@@ -76,24 +76,21 @@ nav {
     margin-right: 10px;
 
     a {
-      font-weight: 900;
+      font-weight: 800;
       font-size: 17px;
       padding: 0.4em 0.8em;
-      //text-shadow: none;
-      text-shadow: 0 1px 1px rgba(0,0,0,.5);
       text-transform: uppercase;
       @include transition(all .25s);
 
       &:hover {
-        background-color: #333333;
+        border-bottom: 5px solid #8E98A6;
       }
     }
 
     &.current {
-
       a {
-        background-color: #FF0000;
         color: #333333;
+        border-bottom: 5px solid #8E98A6;
      }
     }
   }
