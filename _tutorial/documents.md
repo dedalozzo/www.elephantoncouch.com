@@ -318,4 +318,9 @@ $user = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
 $couch->deleteDoc(Couch::STD_DOC_PATH, $user->id, $user->rev);
 {% endhighlight %}
 
-It's important to note that the document isn't really deleted, it will exist until the next compaction.
+<div class="note info">
+  <h5>Important note on deleted documents</h5>
+  <p>
+    It's important to note that the document isn't really deleted, it will exist until the next compaction.
+  </p>
+</div>
