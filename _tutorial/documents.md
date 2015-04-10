@@ -251,15 +251,10 @@ $user = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
 echo $user->firstName . ' ' . $user->lastName;
 {% endhighlight %}
 
-<div class="note">
-  <h5>ProTip™: Use document paths constants</h5>
-  <p>
-    It's important to note the constant Couch::STD_DOC_PATH, which is equivalent to. Since both documents, local and 
-    design documents resides on the same database, they use different paths. Standard documents don't have one, design 
-    documents are prefixed by _design/, and local documents by _local/. You don't have to remember them, just use the 
-    following constants: Couch::STD_DOC_PATH, Couch::LOCAL_DOC_PATH, Couch::DESIGN_DOC_PATH.
-  </p>
-</div>
+It's important to note the constant `Couch::STD_DOC_PATH`, which is equivalent to an empty string. Since both documents, 
+local and design documents resides on the same database, they use different paths. Standard documents don't have one, design 
+documents are prefixed by `_design/`, and local documents by `_local/`. You don't have to remember them, just use the 
+following constants: `Couch::STD_DOC_PATH`, `Couch::LOCAL_DOC_PATH`, `Couch::DESIGN_DOC_PATH`.
 
 ### Updating documents
 
