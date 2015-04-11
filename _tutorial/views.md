@@ -23,8 +23,8 @@ CouchDB designates a Query Server to carry out the task.
 A view is stored into a design document. Many views can be part of the same design document. For example, we might have
 a design document called `books` including both `novel`, `psychology` and `history` views.
 CouchDB doesn't update its views when you insert or update a document, but only when you query them (before or after 
-the query, it's up to the application requirements). Just like a librarian catalogs a new book at the time someone ask  
-for [Nineteen Eighty-Four](http://en.wikipedia.org/wiki/Nineteen_Eighty-Four),  
+the query, it's up to the application requirements). Just like a librarian catalogs a new book at the time someone ask for 
+[Nineteen Eighty-Four](http://en.wikipedia.org/wiki/Nineteen_Eighty-Four),  
 CouchDB updates `novel`, `psychology` and `history` views, and finally query `novel` searching for the required novel.
 
 CouchDB uses a technique called MapReduce to generate views according to arbitrary criteria, defined by your application. 
