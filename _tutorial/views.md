@@ -11,21 +11,21 @@ CouchDB is a different animal. SQL doesn't exist at all in the world of CouchDB.
 words in the introduction chapter about views.
 
 A view is a persistent index, which you then query to find data. Like any other index, a view is related to a single 
-database. A view is consisting of a mandatory map function and an optional reduce function. These function, combined, 
+database. A view is consisting of a mandatory map function and an optional reduce function. These functions, combined, 
 take the form of a MapReduce program.
  
 Imagine CouchDB like a big repository for all your documents. A document doesn't have any structure: you might have in 
-the same database invoices, users, orders, articles and whatever, we don't really care. To keep track of all the invoices 
+the same database invoices, users, orders, articles or whatever, CouchDB doesn't really care. To keep track of all the invoices 
 (or the orders), people use catalogs. A catalog can be either an index of all documents of a very specific type or with 
 certain characteristics. A view is, neither more nor less, a catalog, that CouchDB builds upon your requests. To be precise,
 CouchDB designates a Query Server to carry out the task.
 
 A view is stored into a design document. Many views can be part of the same design document. For example, we might have
-a design document called "books" including both "novel", "psychology" and "history".
+a design document called `books` including both `novel`, `psychology` and `history` views.
 CouchDB doesn't update its views when you insert or update a document, but only when you query them (before or after 
-the query, in relation to the options). Just like a librarian catalogs a new book at the time someone ask for 
-[Nineteen Eighty-Four](http://en.wikipedia.org/wiki/Nineteen_Eighty-Four),  
-CouchDB updates "novel", "psychology" and "history" views, and finally query "novel" searching for the required novel.
+the query, it's up to the application requirements). Just like a librarian catalogs a new book at the time someone ask  
+for [Nineteen Eighty-Four](http://en.wikipedia.org/wiki/Nineteen_Eighty-Four),  
+CouchDB updates `novel`, `psychology` and `history` views, and finally query `novel` searching for the required novel.
 
 CouchDB uses a technique called MapReduce to generate views according to arbitrary criteria, defined by your application. 
 Queries can then look up a range of rows from a view, and either use the rows' keys and values directly or get the 
