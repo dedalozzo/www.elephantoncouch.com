@@ -4,102 +4,57 @@ title: Views
 permalink: /tutorial/views/
 ---
 
-Getting Jekyll installed and ready-to-go should only take a few minutes. If it
-ever becomes a pain in the ass, please [file an
-issue]({{ site.repository }}/issues/new) (or submit a pull request)
-describing the issue you encountered and how we might make the process easier.
+In the previous chapter we have worked with documents: we learned how to create, save, read and update a single document. 
+Before we talk about querying documents, you need to introduce few, important, concepts.
+I must warn you, since you're probably accustomed to the old Standard Query Language (SQL), please open your mind, because 
+CouchDB is a different animal. SQL doesn't exist at all in the world of CouchDB. If you remember, we have spent some 
+words in the introduction chapter about views.
 
-### Requirements
+A view is a persistent index, which you then query to find data. Like any other index, a view is related to a single 
+database. A view is consisting of a mandatory map function and an optional reduce function. These function, combined, 
+take the form of a MapReduce program.
+ 
+Imagine CouchDB like a big repository for all your documents. A document doesn't have any structure: you might have in 
+the same database invoices, users, orders, articles and whatever, we don't really care. To keep track of all the invoices 
+(or the orders), people use catalogs. A catalog can be either an index of all documents of a very specific type or with 
+certain characteristics. A view is, neither more nor less, a catalog, that CouchDB builds upon your requests. To be precise,
+CouchDB designates a Query Server to carry out the task.
 
-Installing Jekyll is easy and straight-forward, but there are a few
-requirements you’ll need to make sure your system has before you start.
+A view is stored into a design document. Many views can be part of the same design document. For example, we might have
+a design document called "books" including both "novel", "psychology" and "history".
+CouchDB doesn't update its views when you insert or update a document, but only when you query them (before or after 
+the query, in relation to the options). Just like a librarian catalogs a new book at the time someone ask for 
+[Nineteen Eighty-Four](http://en.wikipedia.org/wiki/Nineteen_Eighty-Four),  
+CouchDB updates "novel", "psychology" and "history" views, and finally query "novel" searching for the required novel.
 
-- [Ruby](http://www.ruby-lang.org/en/downloads/) (including development
-  headers)
-- [RubyGems](http://rubygems.org/pages/download)
-- Linux, Unix, or Mac OS X
-- [NodeJS](http://nodejs.org), or another JavaScript runtime (for
-  CoffeeScript support).
+CouchDB uses a technique called MapReduce to generate views according to arbitrary criteria, defined by your application. 
+Queries can then look up a range of rows from a view, and either use the rows' keys and values directly or get the 
+documents they came from.
+The main component of a view (other than its name) is its map function. We have already seen you can write functions in 
+many languages, but defaults are JavaScript and Erlang. If I recall, CouchDB uses Mozilla SpiderMonkey as JavaScript 
+engine, which is pretty fast. EoC provides its own implementation of a PHP Query Server. Many other languages are 
+supported through third parties.
 
-<div class="note info">
-  <h5>Running Jekyll on Windows</h5>
-  <p>
-    While Windows is not officially supported, it is possible to get it running
-    on Windows. Special instructions can be found on our
-    <a href="../windows/#installation">Windows-specific docs page</a>.
-  </p>
-</div>
+## Map
 
-## Install with RubyGems
+A map function takes a document as input, and emits (outputs) any number of key/value pairs to be indexed. The view 
+generates a complete index by calling the map function on every document in the database, and adding each emitted 
+key/value pair to the index, sorted by key.
+In our previous example, the "Nineteen Eighty-Four" book is mapped against all the views. The resulting indexex are 
+persistent, and updated incrementally as documents change.
+Keep in mind that a view is not a query, it’s an index. Views are persistent, and need to be updated (incrementally) 
+whenever documents change, so having large numbers of them can be expensive. Instead, it’s better to have a smaller 
+number of views that can be queried in interesting ways.
 
-The best way to install Jekyll is via
-[RubyGems](http://rubygems.org/pages/download). At the terminal prompt,
-simply run the following command to install Jekyll:
+## Reduce
 
-{% highlight bash %}
-$ gem install jekyll
-{% endhighlight %}
+A view may also have a reduce function. If present, it can be used during queries to combine multiple rows into one. 
+It can be used to compute aggregate values like totals or averages, or to group rows by common criteria (like collecting 
+all the authors in a book collection).
+CouchDB comes with 3 built-in reduce functions:
 
-All of Jekyll’s gem dependencies are automatically installed by the above
-command, so you won’t have to worry about them at all. If you have problems
-installing Jekyll, check out the [troubleshooting](../troubleshooting/) page or
-[report an issue]({{ site.repository }}/issues/new) so the Jekyll
-community can improve the experience for everyone.
+- `_count`: counts the number of emitted values;
+- `_sum`: sums all the emitted values, which must be numbers;
+- `_stats`: calculates some numerical statistics on your emitted values, which must be numbers.
 
-<div class="note info">
-  <h5>Installing Xcode Command-Line Tools</h5>
-  <p>
-    If you run into issues installing Jekyll's dependencies which make use of
-    native extensions and are using Mac OS X, you will need to install Xcode
-    and the Command-Line Tools it ships with. Download in
-    <code>Preferences &#8594; Downloads &#8594; Components</code>.
-  </p>
-</div>
-
-## Pre-releases
-
-In order to install a pre-release, make sure you have all the requirements
-installed properly and run:
-
-{% highlight bash %}
-gem install jekyll --pre
-{% endhighlight %}
-
-This will install the latest pre-release. If you want a particular pre-release,
-use the `-v` switch to indicate the version you'd like to install:
-
-{% highlight bash %}
-gem install jekyll -v '2.0.0.alpha.1'
-{% endhighlight %}
-
-If you'd like to install a development version of Jekyll, the process is a bit
-more involved. This gives you the advantage of having the latest and greatest,
-but may be unstable.
-
-{% highlight bash %}
-$ git clone git://github.com/jekyll/jekyll.git
-$ cd jekyll
-$ script/bootstrap
-$ bundle exec rake build
-$ ls pkg/*.gem | head -n 1 | xargs gem install -l
-{% endhighlight %}
-
-## Optional Extras
-
-There are a number of (optional) extra features that Jekyll supports that you
-may want to install, depending on how you plan to use Jekyll. These extras
-include LaTeX support, and the use of alternative content rendering engines.
-Check out [the extras page](../extras/) for more information.
-
-<div class="note">
-  <h5>ProTip™: Enable Syntax Highlighting</h5>
-  <p>
-    If you’re the kind of person who is using Jekyll, then chances are you’ll
-    want to enable syntax highlighting using <a href="http://pygments.org/">Pygments</a>
-    or <a href="https://github.com/jayferd/rouge">Rouge</a>. You should really
-    <a href="../templates/#code-snippet-highlighting">check out how to
-    do that</a> before you go any farther.
-  </p>
-</div>
-
-Now that you’ve got everything installed, let’s get to work!
+These functions are fast, since they are written in Erlang.
