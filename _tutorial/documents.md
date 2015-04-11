@@ -33,7 +33,7 @@ To summarize, a document has the following attributes:
 - a body in the form of a JSON object, i.e. a set of key/value pairs;
 - zero or more named binary attachments.
 
-A single coherent whole
+## A single coherent whole
 
 As we know, the notion of document in PHP is missing, but we have objects, instances of classes. On the other hand, 
 CouchDB doesn't know anything about objects, since it works with documents.
