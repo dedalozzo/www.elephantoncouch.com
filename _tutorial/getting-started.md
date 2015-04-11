@@ -5,7 +5,7 @@ permalink: /tutorial/getting-started/
 ---
 
 Once you have installed it, you're ready to use the client. In the example below has shown how to create a new 
-connection with the server and select a database.
+connection with the server.
 
 ### Connect using the cURL adapter
 
@@ -31,8 +31,6 @@ use EoC\Couch;
 use EoC\Adapter;
 
 $couch = new Couch(new Adapter\NativeAdapter('127.0.0.1:5984', 'username', 'password'));
-
-$couch->selectDb('database_name');
 {% endhighlight %}
 
 <div class="note">
@@ -43,4 +41,44 @@ $couch->selectDb('database_name');
   </p>
 </div>
 
+Now that you've finally managed to create a connection, you are ready to work with databases.
+
+## Working with databases
+
+A database is a physical file where CouchDB stores documents. EoC supports the typical CouchDB's database operations: 
+select, create, delete, compact. In addition EoC supports replication, that we'll discuss in a dedicated chapter.
+
+### Creating a database
+
+{% highlight php %}
+<?php
+
+$couch->createDb('database_name');
+{% endhighlight %}
+
+### Selecting a database
+
+{% highlight php %}
+<?php
+
+$couch->selectDb('database_name');
+{% endhighlight %}
+
+### Deleting a dabatase
+
+{% highlight php %}
+<?php
+
+$couch->deleteDb('database_name');
+{% endhighlight %}
+
 Now that you've finally managed to create a connection, you are ready to work with documents.
+
+### Compacting a database
+
+{% highlight php %}
+<?php
+
+$couch->selectDb('database_name');
+$couch->compactDb(); // Compacts the current database.
+{% endhighlight %}
