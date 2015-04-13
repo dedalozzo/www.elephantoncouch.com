@@ -63,7 +63,7 @@ These functions are fast, since they are written in Erlang.
 
 In the example below we created a design document `books` and we added a view called `novel`. The view uses PHP as language 
 for both map and reduce functions, since PHP is the EoC default language. The map function uses 
-the [Nowdoc syntax](http://php.net/manual/en/language.types.string.php#language.types.string.syntax.nowdoc) to make the 
+the [nowdoc syntax](http://php.net/manual/en/language.types.string.php#language.types.string.syntax.nowdoc) to make the 
 code legible.
 
 {% highlight php %}
