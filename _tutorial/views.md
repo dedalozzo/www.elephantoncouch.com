@@ -58,3 +58,78 @@ CouchDB comes with 3 built-in reduce functions:
 - `_stats`: calculates some numerical statistics on your emitted values, which must be numbers.
 
 These functions are fast, since they are written in Erlang.
+
+## Adding MapReduce functions
+
+In the example below we created a design document `books` and we added a view called `novel`. The view uses PHP as language 
+for both map and reduce functions, since PHP is the EoC default language. The map function uses 
+the [Nowdoc syntax](http://php.net/manual/en/language.types.string.php#language.types.string.syntax.nowdoc) to make the 
+code legible.
+
+{% highlight php %}
+<?php
+
+namespace MyPress;
+
+use EoC\Couch;
+use EoC\Adapter;
+
+$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
+$couch->selectDb('database_name');
+
+$doc = DesignDoc::create('books');
+
+$handler = new ViewHandler("novel");
+$handler->mapFn = <<<'MAP'
+function($doc) use ($emit) {
+  if ($doc->type == 'book' && $doc->category == 'novel')
+    $emit($doc->category, $doc->id);
+};
+MAP;
+
+$handler->useBuiltInReduceFnCount();
+
+$doc->addHandler($handler);
+
+$this->couch->saveDoc($doc);
+{% endhighlight %}
+
+Or if you prefer you can chose JavaScript as language for your map and reduce functions. Just remember 
+to specify it during the handler creation.
+
+{% highlight php %}
+<?php
+
+// The equivalent map implementation in JavaScript.
+$map = <<<'MAP'
+function(doc) {
+  if (doc.type === 'book' && doc.category === 'novel')
+    emit(doc.category, doc.id);
+}
+MAP;
+
+// Implementation of the _count native function in JavaScript.
+$reduce = <<<'REDUCE'
+function(keys, values, rereduce) {
+  if (rereduce) {
+    return sum(values);
+  } else {
+    return values.length;
+  }
+}
+REDUCE;
+
+$handler = new ViewHandler("novel", "javascript"); // Force the use of the JavaScript language.
+$handler->mapFn = $map;
+$handler->reduce = $reduce;
+
+$doc->addHandler($handler);
+{% endhighlight %}
+
+It's important to note that, in case of PHP, the closure uses the variable `$emit`, 
+so that you can call `$emit($doc->category, $doc->id)`. The EoC Server, internally, assigns to the `$emit` variable an 
+anonymous function that does the mapping.
+
+You must also remember the `;` at the end of the closure, since it's mandatory. EoC Server makes a double check to 
+assure that your map and reduce functions are properly written: first it checks the declaration using a regular 
+expression, then it uses a lint program to check if your function is a valid PHP code.
