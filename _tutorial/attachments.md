@@ -4,102 +4,29 @@ title: Attachments
 permalink: /tutorial/attachments/
 ---
 
-Getting Jekyll installed and ready-to-go should only take a few minutes. If it
-ever becomes a pain in the ass, please [file an
-issue]({{ site.repository }}/issues/new) (or submit a pull request)
-describing the issue you encountered and how we might make the process easier.
+Attachments store data associated with a document, but are not part of the document's JSON object. Their primary purpose is to make it efficient to store large binary data in a document. Binary data stored in JSON has to be base64-encoded into a string, which inflates its size by 33%. Also, binary data blobs are often large (think of camera images or audio files), and big JSON documents are slow to parse.
 
-### Requirements
+Attachments are uninterpreted data (blobs) stored separately from the JSON body. A document can have any number of attachments, each with a different name. Each attachment is also tagged with a MIME type, which isn't used by Couchbase Lite but can help your application interpret its contents. Attachments can be arbitrarily large, and are only read on demand, not when you load a Document object.
 
-Installing Jekyll is easy and straight-forward, but there are a few
-requirements you’ll need to make sure your system has before you start.
+Attachments also make replication more efficient. When a document that contains pre-existing attachments is synced (to the server or to a client), only attachments that have changed since the last sync are transferred over the network. In particular, changes to document JSON values will not cause Couchbase Lite to re-send attachment data when the attachment has not changed.
 
-- [Ruby](http://www.ruby-lang.org/en/downloads/) (including development
-  headers)
-- [RubyGems](http://rubygems.org/pages/download)
-- Linux, Unix, or Mac OS X
-- [NodeJS](http://nodejs.org), or another JavaScript runtime (for
-  CoffeeScript support).
+In the native API, attachments are represented by the Attachment class. Attachments are available from a Revision object. From a Document, you get to the attachments via its currentRevision.
 
-<div class="note info">
-  <h5>Running Jekyll on Windows</h5>
-  <p>
-    While Windows is not officially supported, it is possible to get it running
-    on Windows. Special instructions can be found on our
-    <a href="../windows/#installation">Windows-specific docs page</a>.
-  </p>
-</div>
+# Reading attachments
 
-## Install with RubyGems
+The Revision class has a number of methods for accessing attachments:
 
-The best way to install Jekyll is via
-[RubyGems](http://rubygems.org/pages/download). At the terminal prompt,
-simply run the following command to install Jekyll:
+attachmentNames returns the names of all the attachments.
+attachmentNamed returns an Attachment object given its name.
+attachments returns all the attachments as Attachment objects.
+Once you have an Attachment object, you can access its name, MIME type and content length. The accessors for the content vary by platform: on iOS it's available as an NSData object or as an NSURL pointing to a read-only file; in Java you read the data from an InputStream.
 
-{% highlight bash %}
-$ gem install jekyll
-{% endhighlight %}
+## Attachment storage
 
-All of Jekyll’s gem dependencies are automatically installed by the above
-command, so you won’t have to worry about them at all. If you have problems
-installing Jekyll, check out the [troubleshooting](../troubleshooting/) page or
-[report an issue]({{ site.repository }}/issues/new) so the Jekyll
-community can improve the experience for everyone.
+In general, you don't need to think about where and how Couchbase Lite is storing data. But since attachments can occupy a lot of space, it can be helpful to know where that space is and how it's managed.
 
-<div class="note info">
-  <h5>Installing Xcode Command-Line Tools</h5>
-  <p>
-    If you run into issues installing Jekyll's dependencies which make use of
-    native extensions and are using Mac OS X, you will need to install Xcode
-    and the Command-Line Tools it ships with. Download in
-    <code>Preferences &#8594; Downloads &#8594; Components</code>.
-  </p>
-</div>
+Attachments aren't stored in the database file itself. Instead they are individual files, contained in a directory right next to the database file. Each attachment file has a cryptic name that is actually a SHA-1 digest of its contents.
 
-## Pre-releases
+As a consequence of the naming scheme, attachments are de-duplicated: if multiple attachments in the same database have exactly the same contents, the data is only stored once in the filesystem.
 
-In order to install a pre-release, make sure you have all the requirements
-installed properly and run:
-
-{% highlight bash %}
-gem install jekyll --pre
-{% endhighlight %}
-
-This will install the latest pre-release. If you want a particular pre-release,
-use the `-v` switch to indicate the version you'd like to install:
-
-{% highlight bash %}
-gem install jekyll -v '2.0.0.alpha.1'
-{% endhighlight %}
-
-If you'd like to install a development version of Jekyll, the process is a bit
-more involved. This gives you the advantage of having the latest and greatest,
-but may be unstable.
-
-{% highlight bash %}
-$ git clone git://github.com/jekyll/jekyll.git
-$ cd jekyll
-$ script/bootstrap
-$ bundle exec rake build
-$ ls pkg/*.gem | head -n 1 | xargs gem install -l
-{% endhighlight %}
-
-## Optional Extras
-
-There are a number of (optional) extra features that Jekyll supports that you
-may want to install, depending on how you plan to use Jekyll. These extras
-include LaTeX support, and the use of alternative content rendering engines.
-Check out [the extras page](../extras/) for more information.
-
-<div class="note">
-  <h5>ProTip™: Enable Syntax Highlighting</h5>
-  <p>
-    If you’re the kind of person who is using Jekyll, then chances are you’ll
-    want to enable syntax highlighting using <a href="http://pygments.org/">Pygments</a>
-    or <a href="https://github.com/jayferd/rouge">Rouge</a>. You should really
-    <a href="../templates/#code-snippet-highlighting">check out how to
-    do that</a> before you go any farther.
-  </p>
-</div>
-
-Now that you’ve got everything installed, let’s get to work!
+Updating a document's attachment does not immediately remove the old version of the attachment. And deleting a document does not immediately delete its attachments. An attachment file has to remain on disk as long as there are any document revisions that reference it, And a revision persists until the next database compaction after it's been replaced or deleted. (Orphaned attachment files are deleted from disk as part of the compaction process.) So if you're concerned about the space taken up by attachments, you should compact the database frequently, or at least after making changes to large attachments.
