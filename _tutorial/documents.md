@@ -55,19 +55,19 @@ Well, we are talking about persistent objects here, but I'm sure you put that al
 
 ## Persistent classes
 
-Now, let's suppose you have the original idea to create a blog platform like WordPress, and you have chosen to do that 
-using PHP and CouchDB, because you desire to try something new, you're tired about SQL, ORM and all that stuff. 
-Your application must handle posts, users and comments, in the most simple way possible. Ah, almost forgot, you decided 
-to call it MyPress (just to know how to call the namespace). You may start creating the `User` class:
+Now, let's suppose you have the original idea to create a platform to manage a library catalog, and you have chosen to do  
+that using PHP and CouchDB, because you desire to try something new, you're tired about SQL, ORM and all that stuff. 
+Your application must handle books, authors and, of course, categories, in the most simple way possible. Ah, almost forgot, 
+you decided to call it Babylon (we need a name to call the namespace). You may start creating the `Author` class:
 
-A class to represent a user.
+A class to represent an author.
 
 {% highlight php %}
 <?php
 
-namespace MyPress;
+namespace Babylon;
 
-class User {
+class Author {
 }
 {% endhighlight %}
 
@@ -83,47 +83,49 @@ This is the most simple case, just extends Doc class.
 {% highlight php %}
 <?php
 
-namespace MyPress;
+namespace Babylon;
 
 use EoC\Doc\Doc;
 
-class User extends Doc {
+class Author extends Doc {
 }
 {% endhighlight %}
 
 ### Implementing the IDoc interface using the TDoc trait
 
-Since `User` inherits from `Person`, and PHP doesn't support multiple inheritance, let's implements IDoc interface, using 
+Since `Author` inherits from `Person`, and PHP doesn't support multiple inheritance, let's implements IDoc interface, using 
 TDoc trait.
 
 {% highlight php %}
 <?php
 
-namespace MyPress;
+namespace Babylon;
 
 use EoC\Doc\IDoc;
 use EoC\Doc\TDoc;
 
-class User extends Person implements IDoc {
+class Author extends Person implements IDoc {
   use TDoc;
 }
 {% endhighlight %}
 
 ## Document's properties
 
-Our class still doesn't have any property. At least, an user will have a first name and a last name, so let's add 
-getters and setters for these properties. It's important to note here, we don't use any protected members, on the 
-contrary methods relay on the `meta` array. Elephant on Couch just care about this array. Every single key/value inside 
-the array will be stored, while the other private or protected members are not taken into account, never.
+Our class still doesn't have any property, apart `id` and `rev`, which are inhereted from `Doc`.
+At least, an author will have a first name and a last name, so let's add getters and setters for these properties. 
+It's important to note here, we don't use any protected members, on the contrary we relay on the `meta` protected array. 
+Elephant on Couch just care about this array. Every single key/value inside the array will be stored, 
+while the other private or protected members are not taken into account, never.
 
 {% highlight php %}
 <?php
 
-namespace MyPress;
+namespace Babylon;
 
 use EoC\Doc\Doc;
 
-class User extends Doc {
+// An author.
+class Author extends Doc {
 
   public function getFirstName() {
     return $this->meta['firstName'];
@@ -158,13 +160,117 @@ class User extends Doc {
     if ($this->isMetadataPresent('lastName'))
       unset($this->meta['lastName']);
   }
+  
+  // Add many other information...
 
 }
+
+// A book.
+class Book extends Doc {
+
+  public function getIsbn() {
+    return $this->meta['isbn'];
+  }
+
+  public function issetIsbn() {
+    return isset($this->meta['isbn']);
+  }
+
+  public function setIsbn($value) {
+    $this->meta['isbn'] = $value;
+  }
+
+  public function unsetIsbn() {
+    if ($this->isMetadataPresent('isbn'))
+      unset($this->meta['isbn']);
+  }
+
+  public function getTitle() {
+    return $this->meta['title'];
+  }
+
+  public function issetTitle() {
+    return isset($this->meta['title']);
+  }
+
+  public function setTitle($value) {
+    $this->meta['title'] = $value;
+  }
+
+  public function unsetTitle() {
+    if ($this->isMetadataPresent('title'))
+      unset($this->meta['title']);
+  }
+  
+  // Add many other information...
+
+}
+
+// A category: novel, psychology, etc.
+class Category {
+
+  public function getName() {
+    return $this->meta['name'];
+  }
+
+  public function issetName() {
+    return isset($this->meta['name']);
+  }
+
+  public function setName($value) {
+    $this->meta['name'] = $value;
+  }
+
+  public function unsetName() {
+    if ($this->isMetadataPresent('name'))
+      unset($this->meta['name']);
+  }
+
+  public function getDescription() {
+    return $this->meta['description'];
+  }
+
+  public function issetDescription() {
+    return isset($this->meta['description']);
+  }
+
+  public function setDescription($value) {
+    $this->meta['description'] = $value;
+  }
+
+  public function unsetDescription() {
+    if ($this->isMetadataPresent('description'))
+      unset($this->meta['description']);
+  }
+  
+  // Add many other information...
+
+}
+
 {% endhighlight %}
 
-Said this, which is very important, Doc comes with a feature to handle properties "a la" C#, helping to keep the 
-application design clean. That means, once you implement getters and setters for the User properties, you are done.
-In a minute we have created a class, whose instances are now persistent.
+You may think the code is a bit verbose, but EoC strongly encourages best practises. You don't need to create all the 
+above methods, EoC in fact doesn't care about getters and setters. Inside a view (as we'll see later), you can 
+access the members of an object using the dereference operator (`->` in PHP and `.` in JavaScript), even if you don't 
+declare getters and setters for the class properties. 
+Since `firstName` and `lastName` are properties, you probably need getters and setters anyway, but they can have different 
+names.  
+Said this, which is very important, `Doc` comes with a feature to handle properties _a la_ C#, helping to keep the 
+application design clean. That means, once you implement getters and setters for the `Author` class' properties, you can 
+refer to these properties using the dereference operator, like the member were public. For example you can write:
+
+{% highlight php %}
+<?php
+
+$author = new Author();
+$author->firstName = 'Fyodor';
+$author->lastName = 'Dostoyevsky'; 
+
+}
+
+This is made possible because `Doc` uses a trait that implements some [magic methods](http://php.net/manual/en/language.oop5.magic.php).
+
+In a minute we have created classes, whose instances are now persistent.
 
 ## Creating, Reading, Updating and Deleting documents (CRUD)
 
@@ -172,12 +278,12 @@ EoC supports the typical database "CRUD" operations on documents: Create, Read, 
 
 ### Creating documents
 
-Let's see how to create an user and save him to CouchDB.
+Let's see how to create an author and save it into CouchDB.
 
 {% highlight php %}
 <?php
 
-namespace MyPress;
+namespace Babylon;
 
 use EoC\Couch;
 use EoC\Adapter;
@@ -185,17 +291,17 @@ use EoC\Adapter;
 $couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
 $couch->selectDb('database_name');
 
-$user = new User();
-$user->firstName = 'John';
-$user->lastName = 'Smith';
+$author = new Author();
+$author->firstName = 'George';
+$author->lastName = 'Orwell';
 
-$couch->saveDoc($user);
+$couch->saveDoc($author);
 {% endhighlight %}
 
 As you can see in the above example, `firstName` and `lastName` behave like public properties, even if they aren't such. 
-The `saveDoc` method is all we need to store the user into CouchDB.
+The `saveDoc()` method is all we need to store the author into CouchDB.
 
-You must note we didn't provide an ID for the user, because EoC will generate one for us. The ID is somewhat important 
+You must note we didn't provide an ID for the author, because EoC will generate one for us. The ID is somewhat important 
 because, as we'll see later, it is the only way to retrieve a document from the database. We strongly suggest to use 
 a universal unique identifier [UUID](http://en.wikipedia.org/wiki/Universally_unique_identifier), but are free to 
 assign whater you want, just remember the ID **must be** unique. In our example we use `77d09b72d0cdbfd73255a9a158000dcf`.  
@@ -203,7 +309,7 @@ assign whater you want, just remember the ID **must be** unique. In our example 
 {% highlight php %}
 <?php
 
-namespace MyPress;
+namespace Babylon;
 
 use EoC\Couch;
 use EoC\Adapter;
@@ -211,12 +317,12 @@ use EoC\Adapter;
 $couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
 $couch->selectDb('database_name');
 
-$user = new User();
-$user->id = '77d09b72d0cdbfd73255a9a158000dcf';
-$user->firstName = 'John';
-$user->lastName = 'Smith';
+$author = new Author();
+$author->id = '77d09b72d0cdbfd73255a9a158000dcf';
+$author->firstName = 'Chuck';
+$author->lastName = 'Palahniuk';
 
-$couch->saveDoc($user);
+$couch->saveDoc($author);
 {% endhighlight %}
 
 For your convenience EoC provides a static method to generate a UUID. 
@@ -231,13 +337,13 @@ $uuid = UUID::generate(UUID::UUID_RANDOM, UUID::FMT_STRING);
 
 ### Reading documents
 
-In the example above we created an user instance that we stored into CouchDB. Let's see how we can retrieve the same 
-user from the database, using `77d09b72d0cdbfd73255a9a158000dcf`, the ID we previously assigned.
+In the example above we created an author instance that we stored into CouchDB. Let's see how we can retrieve the same 
+author from the database, using `77d09b72d0cdbfd73255a9a158000dcf`, the ID we previously assigned.
 
 {% highlight php %}
 <?php
 
-namespace MyPress;
+namespace Babylon;
 
 use EoC\Couch;
 use EoC\Adapter;
@@ -245,25 +351,26 @@ use EoC\Adapter;
 $couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
 $couch->selectDb('database_name');
 
-$user = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
+$author = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
 
-// This will print John Smith.
-echo $user->firstName . ' ' . $user->lastName;
+// This will print Peter Palahniuk.
+echo $author->firstName . ' ' . $author->lastName;
 {% endhighlight %}
 
 It's important to note the constant `Couch::STD_DOC_PATH`, which is equivalent to an empty string. Since both documents, 
 local and design documents resides on the same database, they use different paths. Standard documents don't have one, design 
 documents are prefixed by `_design/`, and local documents by `_local/`. You don't have to remember them, just use the 
-following constants: `Couch::STD_DOC_PATH`, `Couch::LOCAL_DOC_PATH`, `Couch::DESIGN_DOC_PATH`.
+following class constants: `Couch::STD_DOC_PATH`, `Couch::LOCAL_DOC_PATH`, `Couch::DESIGN_DOC_PATH`.
 
 ### Updating documents
 
-Updating a document is easy like to create a new one. Let's see how to modify the first name of the previously created user.
+As you may have noticed Palahniuk's name is Chuck, not Peter. Let's see how to modify the name of the previously created 
+author from Chuck to Peter.
 
 {% highlight php %}
 <?php
 
-namespace MyPress;
+namespace Babylon;
 
 use EoC\Couch;
 use EoC\Adapter;
@@ -271,22 +378,25 @@ use EoC\Adapter;
 $couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
 $couch->selectDb('database_name');
 
-$user = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
-$user->firstName = 'Peter';
+$author = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
+$author->firstName = 'Peter';
 
-$couch->saveDoc($user);
+$couch->saveDoc($author);
 {% endhighlight %}
+
+That's all, updating a document is easy like to create a new one, we have just to provide its ID.
 
 ### Deleting documents
 
 To delete a document is necessary know three things: the document path, the ID and finally its revision.
 There are two ways to delete a document. The first one is simply mark the document as deleted and save it. The second 
 one implies a call to the `deleteDoc()` method.
+Let's now delete Chuck Palahniuk from the database. 
 
 {% highlight php %}
 <?php
 
-namespace MyPress;
+namespace Babylon;
 
 use EoC\Couch;
 use EoC\Adapter;
@@ -294,10 +404,10 @@ use EoC\Adapter;
 $couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
 $couch->selectDb('database_name');
 
-$user = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
-$user->delete();
+$author = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
+$author->delete();
 
-$couch->saveDoc($user);
+$couch->saveDoc($author);
 {% endhighlight %}
 
 Alternatively:
@@ -305,7 +415,7 @@ Alternatively:
 {% highlight php %}
 <?php
 
-namespace MyPress;
+namespace Babylon;
 
 use EoC\Couch;
 use EoC\Adapter;
@@ -313,9 +423,9 @@ use EoC\Adapter;
 $couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
 $couch->selectDb('database_name');
 
-$user = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
+$author = $couch->getDoc(Couch::STD_DOC_PATH, '77d09b72d0cdbfd73255a9a158000dcf');
 
-$couch->deleteDoc(Couch::STD_DOC_PATH, $user->id, $user->rev);
+$couch->deleteDoc(Couch::STD_DOC_PATH, $author->id, $author->rev);
 {% endhighlight %}
 
 <div class="note info">
@@ -332,6 +442,7 @@ CouchDB uses a simple HTTP-based replication system that relays on MVCC. As stat
 CouchDB's B-Tree variant implements the multiversion concurrency control, saving a new document's revision as consequence 
 of an update, an insert or a deletion. These revisions are used, essentially, to resolve [conflicts](http://guide.couchdb.org/draft/conflicts.html) arisen 
 during replication. The revision ID, formerly another UUID, is stored into a reserved document's attribute called `_rev`.
+The attribute is accessible through the already quoted property `rev`.
 To update an existing document, you must always provide its current revision. CouchDB prevents the overwriting of an
 existent document if a new version of the same document is saved in the meantime. 
 In case of a conflict, the application must fetch the last version, reconcile any changes, and try to make a new update.
@@ -343,4 +454,5 @@ to serve the replication cause.
 
 Tombstones are revisions of deleted documents. CouchDB documents are never really deleted until compaction, they still 
 exist as deleted revisions. Tombstones exist for a reason, to synchronize changes in a master/slave or in a multi-master 
-configuration. `_deleted`is the special attribute devoted to determine if a revision is a tombstone or not.
+configuration. `_deleted`is the special attribute devoted to determine if a revision is a tombstone or not. `Doc` provides 
+the method `isDeleted()`to check if the current revision has been deleted.
