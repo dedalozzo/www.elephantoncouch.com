@@ -12,6 +12,7 @@ Creating and configuring queries
 
 Query objects are created by a View's createQuery method, and by a Database's createAllDocumentsQuery method. In its default state a Query object will return every row of the index, in increasing order by key. But there are several properties you can configure to change this, before you run the query. Here are the most basic and common ones:
 
+
 startKey: the key to start at. The default value, null, means to start from the beginning.
 endKey: the last key to return. The default value, null, means to continue to the end.
 descending: If set to true, the keys will be returned in reverse order. (This also reverses the meanings of the startKey and endKey properties, since the query will now start at the highest keys and end at lower ones!)
@@ -29,16 +30,106 @@ mapOnly: If set to true, prevents the reduce function from being run, so you get
 groupLevel: If greater than zero, enables grouping of rows. The value specifies the number of items in the value array that will be grouped.
 
 
-### Querying key ranges
+### Key ranges
 
+Those methods are used to return documents in a key range.
 There are some subtleties to working with key ranges (startKey and endKey.) The first is that if you reverse the order of keys, by setting the reverse property, then the startKey needs to be greater than the endKey. That's the reason they're named start and end, rather than min and max. In the following example, note that the key range starts at 100 and ends at 90; if we'd done it the other way around, we'd have gotten an empty result set.
 
-Objective-C	Swift	Java	Android	C#
-// Set up a query for the highest-rated movies:
-Query query = database.getView("postsByDate").createQuery();
-query.setDescending(true);
-query.setStartKey(new Integer(100));
-query.setEndKey(new Integer(90));
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p><code>setStartKey()</code></p></td>
+      <td><p>Defines the first key to be included in the range.</p></td>
+    </tr>
+    <tr>
+      <td><p><code>setEndKey()</code></p></td>
+      <td><p>Defines the last key to be included in the range.</p></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+### First and last document identifiers
+
+First and last documents to be included in the output.
+If you expect to have multiple documents emit identical keys, you'll need to use `startDocId` in
+addition to `startKey` to paginate correctly. The reason is that `startKey` alone will no longer be
+sufficient to uniquely identify a row. Those parameters are useless if you don't provide a `startKey`. In fact,
+CouchDB will first look at the `startKey` parameter, then it will use the `startDocId` parameter to further
+redefine the beginning of the range if multiple potential staring rows have the same key but different document IDs.
+Same thing for the `endDocId`.
+ 
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p><code>setStartDocId()</code></p></td>
+      <td><p>Sets the ID of the document with which to start the range.</p></td>
+    </tr>
+    <tr>
+      <td><p><code>setEndDocId()</code></p></td>
+      <td><p>Sets the ID of the document with which to end the range.</p></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+ 
+### View Refresh Controls
+
+CouchDB defaults to regenerating views the first time they are accessed. This behavior is preferable in most cases
+as it optimizes the resource utilization on the database server. On the other hand, in some situations the benefit
+of always having fast and updated views far outweigh the cost of regenerating them every time the database server
+receives updates. You can chose CouchDB behaviour using one of the following methods.
+Those methods essentially tell CouchDB that if a reference to the view index is available in memory (ie, if
+the view has been queried at least once since couch was started), go ahead and use it, even if it may be out of
+date. The result is that for a highly trafficked view, end users can see lower latency, although they may not get
+the latest data. However, if there is no view index pointer in memory, the behavior with this option is that same
+as the behavior without the option.
+
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p><code>doNotRefreshView()</code></p></td>
+      <td>
+        <p>
+          CouchDB will not refresh the view, even if it's stalled.
+          This is useful in case you chose to not refresh a view when a query is performed on it, because you want
+          faster results. Remember, in case, to use an updater script that calls the views periodically, for example using a
+          cron. You can find the implementation in Ruby or Python in the document
+          [Update views on document save](http://wiki.apache.org/couchdb/Regenerating_views_on_update).
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><p><code>queryThenRefreshView()</code></p></td>
+      <td><p>CouchDB will update the view after the query's result is returned.</p></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+        
+        
         
 Second is the handling of compound (array) keys. When a view's keys are arrays, it's very common to want to query all the rows that have a specific value (or value range) for the first element. The start key is just a one-element array with that value in it, but it's not obvious what the end key should be. What works is an array that's like the starting key but with a second object appended that's greater than any possible value. For example, if the start key is (in JSON) ["red"] then the end key could be ["red", "ZZZZ"] ... because none of the possible second items could be greater than "ZZZZ", right? Unfortunately this has obvious problems. The correct stop value to use turns out to be an empty object/dictionary, {}, making the end key ["red", {}]. This works because the sort order in views puts dictionaries last.
 
@@ -51,7 +142,43 @@ If the view has a reduce function, it will be run by default when you query the 
 If you don't want the reduce function to be used, set the query's mapOnly property to true. This gives you the flexibility to use a single view for both detailed results and statistics. For example, adding a typical row-count reduce function to a view lets you get the full results (with mapOnly=true) or just the number of rows (with mapOnly=false).
 
 
-### Grouping by key
+### Grouping results
+
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p><code>groupResults()</code></p></td>
+      <td>
+        <p>
+          Results should be grouped.
+          The group option controls whether the reduce function reduces to a set of distinct keys or to a single
+          result row. This will run the rereduce procedure. This parameter makes sense only if a reduce function is defined
+          for the view.          
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><p><code>setGroupLevel($value)</code></p></td>
+      <td>
+        <p>
+          Level at which documents should be grouped.
+          If your keys are JSON arrays, this parameter will specify how many elements in those arrays to use for
+          grouping purposes. If your emitted keys are not JSON arrays this parameter's value will effectively be ignored.
+          Allowed values: positive integers.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 
 The groupLevel property of a query allows you to collapse together (aggregate) rows with the same keys or key prefixes. And you can compute aggregated statistics of the grouped-together rows by using a reduce function. One very powerful use of grouping is to take a view whose keys are arrays representing a hierarchy — like [genre, artist, album, track] for a music library — and query a single level of the hierarchy for use in a navigation UI.
 
