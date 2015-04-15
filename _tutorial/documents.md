@@ -265,8 +265,7 @@ refer to these properties using the dereference operator, like the member were p
 $author = new Author();
 $author->firstName = 'Fyodor';
 $author->lastName = 'Dostoyevsky'; 
-
-}
+{% endhighlight %}
 
 This is made possible because `Doc` uses a trait that implements some [magic methods](http://php.net/manual/en/language.oop5.magic.php).
 
