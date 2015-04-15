@@ -5,11 +5,78 @@ permalink: /tutorial/queries/
 ---
 
 Queries are the primary mechanism for retrieving a result set from a view. The result of a query is an instance of  
-QueryResult, a class that implements the `[IteratorAggregate](http://php.net/manual/en/class.iteratoraggregate.php)`, `Countable` and `ArrayAccess` interfaces, so you can use 
-the result set as an array.
+`QueryResult`, a class that implements the [IteratorAggregate](http://php.net/manual/en/class.iteratoraggregate.php), 
+[Countable](http://php.net/manual/en/class.countable.php) and [ArrayAccess](http://php.net/manual/en/class.arrayaccess.php) 
+interfaces, so you can use the result set as an array.
+
+Elephant on Couch provides three methods to query information from a database, but `queryView()` is all you need on a 
+daily basis.
+`queryTempView()` is there for debugging purpose, since the view doesn't exist and its index is generated from scratch 
+at the time of the query. I recommend you don't use it, ever, neither during the development phase.
+
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p><code>queryAllDocs()</code></p></td>
+      <td><p>Returns a built-in view of all documents in this database. If keys are specified returns only certain rows.</p></td>
+    </tr>
+    <tr>
+      <td><p><code>queryView()</code></p></td>
+      <td><p>Executes the given view and returns the result.</p></td>
+    </tr>
+    <tr>
+      <td><p><code>queryTempView()</code></p></td>
+      <td><p>Executes the given view, both map and reduce functions, for all documents and returns the result.</p></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+Let's see how to query all the novels.
+
+{% highlight php %}
+<?php
+
+namespace MyPress;
+
+use EoC\Couch;
+use EoC\Adapter;
+
+$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
+$couch->selectDb('database_name');
+
+$opts = new ViewQueryOpts();
+$opts->doNotReduce();
+
+$result = $couch->queryView("books", "novel", $keys, $opts);
+
+$this->view->setVar('usersCount', $result->getTotalRows());
+
+$doc = DesignDoc::create('books');
+
+$handler = new ViewHandler("novel");
+$handler->mapFn = <<<'MAP'
+function($doc) use ($emit) {
+  if ($doc->type == 'book' && $doc->category == 'novel')
+    $emit($doc->category, $doc->id);
+};
+MAP;
+
+$handler->useBuiltInReduceFnCount();
+
+$doc->addHandler($handler);
+
+$this->couch->saveDoc($doc);
+{% endhighlight %}
 
 
-There's also a special type of query called an all-docs query. This type of query isn't associated with any view; or rather, you can think of it as querying an imaginary view that contains one row for every document in the database. You use an all-docs query to find all the documents in the database, or the documents with keys in a specific range, or even the documents with a specific set of keys. It can also be used to find documents with conflicts.
 
 Creating and configuring queries
 
