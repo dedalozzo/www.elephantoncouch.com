@@ -86,8 +86,56 @@ Same thing for the `endDocId`.
   </tbody>
 </table>
 </div>
+
+### Reverse order of results
+
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p><code>reverseOrderOfResults()</code></p></td>
+      <td>
+        <p>
+          Reverses order of results.
+          Note that the descending option is applied before any key filtering, so you may need to swap the values
+          of the start key and end key options to get the expected results.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+### Limit the number of results
+
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p><code>setLimit($value)</code></p></td>
+      <td>
+        <p>
+          Restricts the number of results.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
  
-### View Refresh Controls
+### View refresh controls
 
 CouchDB defaults to regenerating views the first time they are accessed. This behavior is preferable in most cases
 as it optimizes the resource utilization on the database server. On the other hand, in some situations the benefit
@@ -135,12 +183,101 @@ Second is the handling of compound (array) keys. When a view's keys are arrays, 
 
 ### Reducing
 
-If the view has a reduce function, it will be run by default when you query the view. This means that all rows of the output will be aggregated into a single row with no key, whose value is the output of the reduce function. (See the View documentation for a full description of what reduce functions do.)
+If the view has a reduce function, it will be run by default when you query the view. This means that all rows of the 
+output will be aggregated into a single row with no key, whose value is the output of the reduce function.
+If you don't want the reduce function to be used, call the method `doNotReduce()`. This gives you the flexibility to use 
+a single view for both detailed results and statistics. For example, adding a typical row-count reduce function to a 
+view lets you get the full results. Remember that you can't obtain both the results and the count with a single query. 
+If you need both, you have to run the query twice!
 
-(It's important to realize that the reduce function runs on the rows that would be output, not all the rows in the view. So if you set the startKey and/or endKey, the reduce function runs only on the rows in that key range.)
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p><code>reduce()</code></p></td>
+      <td>
+        <p>
+          Calls the reduce function is defined.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><p><code>doNotReduce()</code></p></td>
+      <td>
+        <p>
+          Even if a reduce function is defined for the view, doesn't call it.
+          If a view contains both a map and reduce function, querying that view will by default return the result
+          of the reduce function. To avoid this behaviour you must call this method.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-If you don't want the reduce function to be used, set the query's mapOnly property to true. This gives you the flexibility to use a single view for both detailed results and statistics. For example, adding a typical row-count reduce function to a view lets you get the full results (with mapOnly=true) or just the number of rows (with mapOnly=false).
+## Inclusions and exclusions
 
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p><code>includeDocs()</code></p></td>
+      <td>
+        <p>
+          Automatically fetches and includes full documents.
+          However, the user should keep in mind that there is a race condition when using this option. It is
+          possible that between reading the view data and fetching the corresponding document that the document has changed.
+          You can call this method only if the view doesn't contain a reduce function.          
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><p><code>excludeResults()</code></p></td>
+      <td>
+        <p>
+          Don't get any data, but all meta-data for this View. The number of documents in this View for example.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><p><code>excludeEndKey()</code></p></td>
+      <td>
+        <p>
+          Tells CouchDB to not include end key in the result.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><p><code>includeConflicts()</code></p></td>
+      <td>
+        <p>
+          Includes conflict documents.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><p><code>includeUpdateSeq()</code></p></td>
+      <td>
+        <p>
+          Includes an `update_seq` value indicating which sequence id of the database the view reflects.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 ### Grouping results
 
@@ -189,3 +326,35 @@ groupLevel=1 is slightly different in that it supports non-array keys: it compar
 We've talked about the keys of grouped query rows, but what are the values? The value property of each row will be the result of running the view's reduce function over all the rows that were aggregated; or if the view has no reduce function, there's no value. (See the View documentation for information on reduce functions.)
 
 Here's an interesting example. We have a database of the user's music library, and a view containing a row for every audio track, with key of the form [genre, artist, album, trackname] and value being the track's duration in seconds. The view has a reduce function that simply totals the input values. The user's drilled down into the genre "Mope-Rock", then artist "Radiohead", and now we want to display the albums by this artist, showing each album's running time.
+
+## Making joins
+
+In SQL a join clause combines records from two or more tables, creating a single result set. As you know, CouchDB doesn't 
+support joins, since it's not a relational database management system.
+When using CouchDB, a join is a matter for the application to deal with. Of course, a join can't be done through a SQL 
+statement, but it's still an easy task.
+A great limitation I found during the development of EoC is that CouchDB returns only the rows if a match for a key is 
+found. This behaviour precludes any LEFT or RIGHT join. To overcome this limitation EoC does a post operation on the 
+result set, adding a new row for every key hasn't been matched.
+
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p><code>includeMissingKeys()</code></p></td>
+      <td>
+        <p>
+          Includes all the rows, even if a match for a key is not found.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
