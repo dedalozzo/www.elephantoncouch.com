@@ -135,7 +135,7 @@ code legible.
 {% highlight php %}
 <?php
 
-namespace MyPress;
+namespace Babylon;
 
 use EoC\Couch;
 use EoC\Adapter;
@@ -149,7 +149,7 @@ $handler = new ViewHandler("novel");
 $handler->mapFn = <<<'MAP'
 function($doc) use ($emit) {
   if ($doc->type == 'book' && $doc->category == 'novel')
-    $emit($doc->category, $doc->id);
+    $emit($doc->category, $doc->title);
 };
 MAP;
 
