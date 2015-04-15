@@ -44,7 +44,29 @@ Let's see how to query all the novels.
 {% highlight php %}
 <?php
 
-namespace MyPress;
+namespace Babylon;
+
+use EoC\Couch;
+use EoC\Adapter;
+
+$couch = new Couch(new Adapter\CurlAdapter('127.0.0.1:5984', 'username', 'password'));
+$couch->selectDb('database_name');
+
+$novelsCount = $couch->queryView("books", "novel")
+echo $novelsCount->getReducedValue(); // Displays the number of novels.
+{% endhighlight %}
+
+As always we create the client instance, using the cURL adapter, then we select a database and we query the `novel` view 
+which belongs to the `books` design document. Since the view uses the built-in `_count` reduce function, the query doesn't 
+return any rows, but instead counts them. The method `getReducedValue()` of the `QueryResult` class returns count or sum  
+in case this is the result of a reduce function.
+
+Now let's see how to return the list of all the novels in the library's catalog, and print them out.
+
+{% highlight php %}
+<?php
+
+namespace Babylon;
 
 use EoC\Couch;
 use EoC\Adapter;
@@ -55,28 +77,17 @@ $couch->selectDb('database_name');
 $opts = new ViewQueryOpts();
 $opts->doNotReduce();
 
-$result = $couch->queryView("books", "novel", $keys, $opts);
+$novels = $couch->queryView("books", "novel", NULL, $opts);
 
-$this->view->setVar('usersCount', $result->getTotalRows());
+foreach ($novels as $novel)
+  echo $novel['value'];
 
-$doc = DesignDoc::create('books');
-
-$handler = new ViewHandler("novel");
-$handler->mapFn = <<<'MAP'
-function($doc) use ($emit) {
-  if ($doc->type == 'book' && $doc->category == 'novel')
-    $emit($doc->category, $doc->id);
-};
-MAP;
-
-$handler->useBuiltInReduceFnCount();
-
-$doc->addHandler($handler);
-
-$this->couch->saveDoc($doc);
 {% endhighlight %}
 
 
+To set the query options, we use an instance of the `ViewQueryOpts class. In 
+the above example we simply set the We'll 
+see later of the third parameter
 
 Creating and configuring queries
 
