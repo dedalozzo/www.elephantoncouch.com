@@ -44,7 +44,7 @@ The encapsulation of a document inside an object is done, in fact, through a `me
 associative array. This attribute contains the object's metadata, or if you prefer the document's body.
  
 The client can't work with any object, it requires the object is an instance of a class that inherits from 
-`Doc` (or implements the IDoc interface). This is the most important concept you must keep in 
+`Doc` (or implements the `IDoc` interface). This is the most important concept you must keep in 
 mind using EoC: to be stored, an object must be an instance of a `Doc` subclass.
 
 EoC does all the dirty work under the hood, therefore you don't need to worry about nothing. Within the 
@@ -74,7 +74,7 @@ class Author {
 There are two ways for adding persistence to the above class. The most simple one, that should be normally used, is to 
 inherit every class from the superclass Doc. Sometimes you have to deal with the fact that PHP doesn't support multiple 
 inheritance: this happens when a class, having already an ancestor, can't extend Doc. To handle a situation like this,
-EoC provides a trait, called TDoc, which implements every single method of the IDoc interface. That's all you need.
+EoC provides a trait, called TDoc, which implements every single method of the `IDoc` interface. That's all you need.
 
 ### Inheriting from Doc
 
@@ -93,8 +93,8 @@ class Author extends Doc {
 
 ### Implementing the IDoc interface using the TDoc trait
 
-Since `Author` inherits from `Person`, and PHP doesn't support multiple inheritance, let's implements IDoc interface, using 
-TDoc trait.
+Since `Author` inherits from `Person`, and PHP doesn't support multiple inheritance, let's implements `IDoc` interface, using 
+`TDoc` trait.
 
 {% highlight php %}
 <?php
@@ -444,10 +444,13 @@ Aside the more common master/slave configuration you may setup a [multi-master r
 CouchDB uses a simple HTTP-based replication system that relays on MVCC. As stated in this chapter's introduction, 
 CouchDB's B-Tree variant implements the multiversion concurrency control, saving a new document's revision as consequence 
 of an update, an insert or a deletion. These revisions are used, essentially, to resolve [conflicts](http://guide.couchdb.org/draft/conflicts.html) arisen 
-during replication. The revision ID, formerly another UUID, is stored into a reserved document's attribute called `_rev`.
+during replication.
+
+The revision ID, formerly another UUID, is stored into a reserved document's attribute called `_rev`.
 The attribute is accessible through the already quoted property `rev`.
 To update an existing document, you must always provide its current revision. CouchDB prevents the overwriting of an
-existent document if a new version of the same document is saved in the meantime. 
+existent document if a new version of the same document is saved in the meantime.
+ 
 In case of a conflict, the application must fetch the last version, reconcile any changes, and try to make a new update.
 At first glance you might be led to believe CouchDB is a version control system, but it's not. The old revisions, in fact,
 are periodically deleted, this time for real, during compaction, and anyway they’re never replicated. They only exist 
