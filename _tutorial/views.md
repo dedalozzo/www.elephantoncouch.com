@@ -24,52 +24,75 @@ A view is stored into a design document. Many views can be part of the same desi
 a design document called `books` including both `novel`, `psychology` and `history` views.
 CouchDB doesn't update its views when you insert or update a document, but only when you query them (before or after 
 the query, it's up to the application requirements). Just like a librarian catalogs a new book at the time someone ask for 
-[Nineteen Eighty-Four](http://en.wikipedia.org/wiki/Nineteen_Eighty-Four), CouchDB updates 
+"[Nineteen Eighty-Four](http://en.wikipedia.org/wiki/Nineteen_Eighty-Four)", CouchDB updates 
 `novel`, `psychology` and `history` views, and finally query `novel` searching for the required novel.
 
 CouchDB uses a technique called MapReduce to generate views according to arbitrary criteria, defined by your application. 
 Queries can then look up a range of rows from a view, and either use the rows' keys and values directly or get the 
 documents they came from.
-The main component of a view (other than its name) is its map function. We have already seen you can write functions in 
-many languages, but defaults are JavaScript and Erlang. If I recall, CouchDB uses Mozilla SpiderMonkey as JavaScript 
-engine, which is pretty fast. EoC provides its own implementation of a PHP Query Server. Many other languages are 
-supported through third parties.
+A view must have a name and at least the one function, the so called map function. Optionally, the same view may have a 
+reduce function. 
+We have already seen you can write functions in many languages, but defaults are JavaScript and Erlang. 
+If I recall, CouchDB uses [Mozilla SpiderMonkey](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey) 
+as JavaScript engine, which is pretty fast. 
+EoC provides its own implementation of a PHP Query Server. Many other languages are supported through third parties.
 
-## Map
+## Map function
 
-A map function takes a document as input, and emits (outputs) any number of key/value pairs to be indexed. The view 
+A map function takes a document as input, and emits as output any number of key/value pairs to be indexed. The view 
 generates a complete index by calling the map function on every document in the database, and adding each emitted 
 key/value pair to the index, sorted by key.
-In our previous example, the "Nineteen Eighty-Four" book is mapped against all the views. The resulting indexex are 
+In our previous example, the "Nineteen Eighty-Four" book is mapped against all the views. The resulting indexes are 
 persistent, and updated incrementally as documents change.
 Keep in mind that a view is not a query, it’s an index. Views are persistent, and need to be updated (incrementally) 
 whenever documents change, so having large numbers of them can be expensive. Instead, it’s better to have a smaller 
 number of views that can be queried in interesting ways.
 
-### Rules for the map function
+### A few rules to follow
 
-The map function is called by the indexer to help generate an index, and it has to meet certain requirements, otherwise 
-the index won't be consistent. It's important to understand some rules so you can create a proper map function, otherwise 
-your queries can misbehave in strange ways.
+When creating a map function you must follow some rules:
 
-- It must be a "pure" function: that means any time it's called with the same input, it must produce exactly the same output. In other words, it can't use any external state, just its input JSON.
-- It can't have side effects: it shouldn't change any external state, because it's unpredictable when it's called or how often it's called or in what order documents are passed to it.
-- It must be thread-safe: it may be called on a background thread belonging to the indexer, or even in parallel on several threads at once.
+* keep the map function simple, because an heavy map function can kill your server;
+* do not create a timestamp inside a map function, because you can't even know when the server will call it: you can emit 
+a timestamp, but that timestamp cannot be generated inside the map function itself;
+* the map function must be thread safe;
+* a map function shouldn't have any side effects, use it just to emit key/value pairs;
+* remember that a map function is just a function to build an index;
+* test your map function because a bug will compromise the index integrity.
 
-In particular, avoid these common mistakes:
-
-Don't do anything that depends on the current date and time -- that breaks the first rule, since your function's output can change depending on the date/time it's called. Common mistakes include emitting a timestamp, emitting a person's age, or emitting only documents that have been modified in the past week.
-Don't try to "parameterize" the map function by referring to an external variable whose value you change when querying. It won't work. People sometimes try this because they want to find various subsets of the data, like all the items of a particular color. Instead, emit all the values of that property, and use a key range in the query to pick out the rows with the specific value you want.
-Don't make any assumptions about when the map function is called. That's an implementation detail of the indexer. (For example, it's not called every time a document changes.)
-Avoid having the map function call out into complex external code. That code might change later on to be stateful or have side effects, breaking your map function.
+If you follow these simple rules, you'll be fine.
 
 ### Keys and values
 
-Both the key and value passed to emit can be any JSON-compatible objects: not just strings, but also numbers, booleans, arrays, dictionaries/maps, and the special JSON null object (which is distinct from a null/nil pointer.) In addition, the value emitted, but not the key, can be a null/nil pointer. (It's pretty common to not need a value in a view, in which case it's more efficient to not emit one.)
+First of all, remember that you don't need to emit the document ID as value, because it's something CouchDB implicitly 
+does. Indexes take up a lot of space, so you need to be careful.
+Both the key and value passed to the emit function can be any JSON-compatible objects: not just strings, but also numbers, 
+booleans, arrays, etc.
+CouchDB allows duplicated keys, but keys can never be `null`. On the contrary, values are often unused, because all you 
+need are keys to sort data and ids to grab, eventually, the related documents.
+Sometimes you may emit as value, the whole document. We strongly discourage this practise, but you might find it useful 
+in some special case.
+
+
+As a result of a query, a set of rows is returnedAny row of a result set there are
+
+`id`: the document ID
+`key`: the emitted key for the row
+`value`: the valued emitted
+`doc`: the whole document
+
+
+
+Values instead can be `null`, but 
+In addition, the value emitted, but not the key, can be null, in which case it's better to not emit it.
 
 Keys are commonly strings, but it turns out that arrays are a very useful type of key as well. This is because of the way arrays are sorted: given two array keys, the first items are compared first, then if those match the second items are compared, and so on. That means that you can use array keys to establish multiple levels of sorting. If the map function emits keys of the form [lastname, firstname], then the index will be sorted by last name, and entries with the same last name will be sorted by first name, just as if you'd used ORDER BY lastname, firstname in SQL.
 
-Here are the exact rules for sorting (collation) of keys. The most significant factor is the key's object type; keys of one type always sort before or after keys of a different type. This list gives the types in order, and states how objects of that type are compared:
+Here are the exact rules for sorting (collation) of keys. The most significant factor is the key's object type; keys of one type always sort before or after keys of a different type. This list gives the types in order, and states how objects of that type are compared
+
+### Wildcards
+
+a JavaScript empty object `{}` or in case of PHP a `StdClass`, which is the same. :
 
 null
 false, true (in that order)
@@ -88,7 +111,7 @@ When is the map function called? View indexes are updated on demand when queried
 
 If a document has conflicts, which conflicting revision gets indexed? The document's currentRevision, sometimes called the "winning" revision, is the one that you see in the API if you don't request a revision by ID.
 
-## Reduce
+## Reduce function
 
 A view may also have a reduce function. If present, it can be used during queries to combine multiple rows into one. 
 It can be used to compute aggregate values like totals or averages, or to group rows by common criteria (like collecting 
