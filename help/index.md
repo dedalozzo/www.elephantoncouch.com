@@ -2,7 +2,7 @@
 layout: page
 title: Getting Help
 permalink: /help/
------------------
+---
 
 Need help with Elephant on Couch? Try these resources.
 
