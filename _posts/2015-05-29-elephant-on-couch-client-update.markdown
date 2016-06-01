@@ -1,8 +1,8 @@
 ---
 layout: news_item
 title: 'Elephant on Couch client update'
-date: 2016-06-01 21:06:51 -0800
-author: alfredxing
+date: 2016-05-29 21:06:51 -0800
+author: dedalozzo
 categories: [community]
 ---
 
