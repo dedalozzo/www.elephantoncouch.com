@@ -23,9 +23,9 @@ question, just ask in the channel.
 Search through the issues on the specific EoC's component. Think you've
 found a bug? File a new issue.
 
-[EoC Client Issues](https://github.com/dedalozzo/eoc-client/issues)
-[EoC Server Issues](https://github.com/dedalozzo/eoc-server/issues)
-[EoC Command-Line Interface Issues](https://github.com/dedalozzo/eoc-cli/issues)
+[EoC Client Issues](https://github.com/dedalozzo/eoc-client/issues)  
+[EoC Server Issues](https://github.com/dedalozzo/eoc-server/issues)  
+[EoC Command-Line Interface Issues](https://github.com/dedalozzo/eoc-cli/issues)  
 
 ### E-mail me!
 
