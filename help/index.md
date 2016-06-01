@@ -3,39 +3,36 @@ layout: page
 title: Getting Help
 ---
 
-Need help with Jekyll? Try these resources.
+Need help with Elephant on Couch? Try these resources.
 
-### [Google](https://google.com)
+### [EoC on StackOverflow](http://stackoverflow.com/questions/tagged/eoc)
 
-Add **jekyll** to almost any query, and you'll find just what you need.
-
-### [jekyll/jekyll-help]({{site.help_url}}#how-do-i-ask-a-question)
-
-Search through the issues that the fine folks on the **@jekyll/help** team
-have answered, or ask your own.
-
-### [Jekyll Talk](https://talk.jekyllrb.com/)
-
-Jekyll Talk is our official Discourse forum. Here, users and contributors
-can ask questions and discuss all aspects of Jekyll.
-
-### [Jekyll on StackOverflow](http://stackoverflow.com/questions/tagged/jekyll)
-
-StackOverflow is a staple of any developer's diet. Check out the Jekyll tag
+StackOverflow is a staple of any developer's diet. Check out the eoc tag
 on StackOverflow for an answer to your question. Not there? Ask a new
 question!
 
-### [Jekyll IRC Channel](irc:irc.freenode.net/jekyll)
+### [CouchDB IRC Channel](irc:irc.freenode.net/eoc)
 
-Get live support at **#jekyll** on **irc.freenode.net**, the official
-Jekyll IRC channel.
+Get live support at **#couchdb** on **irc.freenode.net**, the official
+CouchDB IRC channel. If you need specific help on EoC, my nickname is 
+**Dedalo**, if I'm there just tab me, otherwise, for a general CouchDB 
+question, just ask in the channel.
 
-### [jekyll/jekyll](https://github.com/jekyll/jekyll/issues)
+### EoC Issues
 
-Search through the issues on the main Jekyll development. Think you've
+Search through the issues on the specific EoC's component. Think you've
 found a bug? File a new issue.
 
-### [@jekyllrb on Twitter](https://twitter.com/jekyllrb)
+[EoC Client Issues](https://github.com/dedalozzo/eoc-client/issues)
+[EoC Server Issues](https://github.com/dedalozzo/eoc-server/issues)
+[EoC Command-Line Interface Issues](https://github.com/dedalozzo/eoc-cli/issues)
 
-The official Jekyll Twitter account. It's not checked often, so try the
-above first.
+### E-mail me!
+
+You can reach me via e-mail as well. Just check my GitHub 
+[profile](https://github.com/dedalozzo/eoc-client/issues).
+
+### [@dedalozzo on Twitter](https://twitter.com/dedalozzo)
+
+Drop me a message on Twitter. It's not checked often, so try the above 
+first.
