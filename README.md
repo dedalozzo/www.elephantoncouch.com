@@ -1,10 +1,10 @@
-# Jekyll docs site
+# Elephant on Couch docs site
 
-This directory contains the code for the Jekyll docs site, [jekyllrb.com](http://jekyllrb.com/).
+This directory contains the code for the Elephant on Couch docs site, [elephantoncouch.com](http://elephantoncouch.com/).
 
 ## Contributing
 
-For information about contributing, see the [Contributing page](http://jekyllrb.com/docs/contributing/).
+For information about contributing, see the [Contributing page](http://elephantoncouch.com/docs/contributing/).
 
 ## Running locally
 
