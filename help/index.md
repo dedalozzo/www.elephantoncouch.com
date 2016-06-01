@@ -26,12 +26,12 @@ found a bug? File a new issue.
 
 [EoC Client Issues](https://github.com/dedalozzo/eoc-client/issues)  
 [EoC Server Issues](https://github.com/dedalozzo/eoc-server/issues)  
-[EoC Command-Line Interface Issues](https://github.com/dedalozzo/)  
+[EoC Command-Line Interface Issues](https://github.com/dedalozzo/eoc-client/issues)  
 
 ### E-mail me!
 
 You can reach me via e-mail as well. Just check my GitHub 
-[profile](https://github.com/dedalozzo/eoc-client/issues).
+[profile](https://github.com/dedalozzo/).
 
 ### [@dedalozzo on Twitter](https://twitter.com/dedalozzo)
 
