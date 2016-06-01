@@ -25,7 +25,7 @@ found a bug? File a new issue.
 
 [EoC Client Issues](https://github.com/dedalozzo/eoc-client/issues)  
 [EoC Server Issues](https://github.com/dedalozzo/eoc-server/issues)  
-[EoC Command-Line Interface Issues](https://github.com/dedalozzo/eoc-cli/issues)  
+[EoC Command-Line Interface Issues](https://github.com/dedalozzo/)  
 
 ### E-mail me!
 
