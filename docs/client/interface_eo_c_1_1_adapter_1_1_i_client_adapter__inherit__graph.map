@@ -1,0 +1,5 @@
+<map id="IClientAdapter" name="IClientAdapter">
+<area shape="rect" id="node2" href="$class_eo_c_1_1_adapter_1_1_abstract_adapter.html" title="An abstract HTTP client adapter. " alt="" coords="49,131,259,369"/>
+<area shape="rect" id="node3" href="$class_eo_c_1_1_adapter_1_1_curl_adapter.html" title="An HTTP 1.1 client adapter using cURL. " alt="" coords="5,498,116,619"/>
+<area shape="rect" id="node4" href="$class_eo_c_1_1_adapter_1_1_native_adapter.html" title="An HTTP 1.1 client using raw sockets. " alt="" coords="141,417,354,700"/>
+</map>

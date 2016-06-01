@@ -1,0 +1,4 @@
+<map id="AbstractClient" name="AbstractClient">
+<area shape="rect" id="node2" href="$class_elephant_on_couch_1_1_client_1_1_curl_client.html" title="An HTTP 1.1 client using cURL. " alt="" coords="5,299,127,421"/>
+<area shape="rect" id="node3" href="$class_elephant_on_couch_1_1_client_1_1_native_client.html" title="An HTTP 1.1 client using raw socket. " alt="" coords="151,263,330,457"/>
+</map>

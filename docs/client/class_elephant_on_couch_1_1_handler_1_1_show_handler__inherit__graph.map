@@ -1,0 +1,4 @@
+<map id="ShowHandler" name="ShowHandler">
+<area shape="rect" id="node2" href="$class_elephant_on_couch_1_1_handler_1_1_design_handler.html" title="This class defines the interface for all the concrete CouchDB&#39;s handlers. " alt="" coords="10,160,126,237"/>
+<area shape="rect" id="node3" href="$interface_elephant_on_couch_1_1_handler_1_1_i_handler.html" title="All the concrete Design Handlers must implement this interface. " alt="" coords="5,5,131,112"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="AbstractOpts" name="AbstractOpts">
+<area shape="rect" id="node2" href="$class_eo_c_1_1_opt_1_1_changes_feed_opts.html" title="To change the feed type, set a different timeout, etc, you can create a ChangesFeedOpts instance and ..." alt="" coords="5,182,187,509"/>
+<area shape="rect" id="node3" href="$class_eo_c_1_1_opt_1_1_db_updates_feed_opts.html" title="To change the feed type, set a different timeout, etc, you can create a DbUpdatesFeedOpts instance an..." alt="" coords="211,263,386,428"/>
+<area shape="rect" id="node4" href="$class_eo_c_1_1_opt_1_1_doc_opts.html" title="To retrieve additional information about document, you can create a DocOpts instance and pass it as p..." alt="" coords="411,211,592,479"/>
+<area shape="rect" id="node5" href="$class_eo_c_1_1_opt_1_1_view_query_opts.html" title="To set the query arguments you must create an instance of this class. Use it when you query a CouchDB..." alt="" coords="617,145,805,545"/>
+</map>

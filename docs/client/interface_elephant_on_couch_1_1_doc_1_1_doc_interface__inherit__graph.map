@@ -1,0 +1,6 @@
+<map id="DocInterface" name="DocInterface">
+<area shape="rect" id="node2" href="$class_elephant_on_couch_1_1_doc_1_1_abstract_doc.html" title="The abstract document is the ancestor of the other document classes. " alt="" coords="93,248,259,443"/>
+<area shape="rect" id="node3" href="$class_elephant_on_couch_1_1_doc_1_1_doc.html" title="Standard documents are replicable documents. " alt="" coords="9,491,183,759"/>
+<area shape="rect" id="node5" href="$class_elephant_on_couch_1_1_doc_1_1_local_doc.html" title="Local document are not replicated and don&#39;t have attachments. " alt="" coords="207,579,304,671"/>
+<area shape="rect" id="node4" href="$class_elephant_on_couch_1_1_doc_1_1_design_doc.html" title="A design document is a special CouchDB document where views, updates, rewrites and many others handle..." alt="" coords="5,809,187,1106"/>
+</map>

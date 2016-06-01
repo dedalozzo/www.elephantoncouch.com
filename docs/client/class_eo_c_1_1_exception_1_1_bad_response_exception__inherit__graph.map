@@ -1,0 +1,5 @@
+<map id="BadResponseException" name="BadResponseException">
+<area shape="rect" id="node2" href="$class_eo_c_1_1_exception_1_1_client_error_exception.html" title="Exception thrown when a client error is encountered (4xx codes) " alt="" coords="5,219,149,296"/>
+<area shape="rect" id="node3" href="$class_eo_c_1_1_exception_1_1_server_error_exception.html" title="Exception thrown when a server error is encountered (5xx codes) " alt="" coords="173,219,323,296"/>
+<area shape="rect" id="node4" href="$class_eo_c_1_1_exception_1_1_unknown_response_exception.html" title="Exception thrown when an unknown response is encountered (&gt; 600 codes) " alt="" coords="347,219,543,296"/>
+</map>

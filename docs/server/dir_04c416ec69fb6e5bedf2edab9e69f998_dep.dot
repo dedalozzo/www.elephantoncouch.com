@@ -1,0 +1,9 @@
+digraph "src/ElephantOnCouch/Handler" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_0cf4ce6bac5ce6bcb9464a1948618f7f {
+    graph [ bgcolor="#ddddee", pencolor="black", label="ElephantOnCouch" fontname="FreeSans.ttf", fontsize="10", URL="dir_0cf4ce6bac5ce6bcb9464a1948618f7f.html"]
+  dir_04c416ec69fb6e5bedf2edab9e69f998 [shape=box, label="Handler", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_04c416ec69fb6e5bedf2edab9e69f998.html"];
+  }
+}

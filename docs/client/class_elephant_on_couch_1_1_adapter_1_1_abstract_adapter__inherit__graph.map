@@ -1,0 +1,5 @@
+<map id="AbstractAdapter" name="AbstractAdapter">
+<area shape="rect" id="node3" href="$class_elephant_on_couch_1_1_adapter_1_1_curl_adapter.html" title="An HTTP 1.1 client adapter using cURL. " alt="" coords="5,461,127,583"/>
+<area shape="rect" id="node4" href="$class_elephant_on_couch_1_1_adapter_1_1_native_adapter.html" title="An HTTP 1.1 client using raw sockets. " alt="" coords="151,388,381,656"/>
+<area shape="rect" id="node2" href="$interface_elephant_on_couch_1_1_adapter_1_1_i_client_adapter.html" title="An HTTP client adapter interface. " alt="" coords="110,5,222,83"/>
+</map>

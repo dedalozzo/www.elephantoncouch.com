@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$interface_eo_c_1_1_doc_1_1_i_doc.html" title="To become persistent a class must implement at least this interface. " alt="" coords="5,31,55,57"/>
+<area shape="rect" id="node2" href="$class_eo_c_1_1_doc_1_1_abstract_doc.html" title="The abstract document is the ancestor of the other document classes. " alt="" coords="103,31,197,57"/>
+<area shape="rect" id="node3" href="$class_eo_c_1_1_doc_1_1_doc.html" title="Standard documents are replicable documents. " alt="" coords="261,5,307,32"/>
+<area shape="rect" id="node5" href="$class_eo_c_1_1_doc_1_1_local_doc.html" title="Local document are not replicated and don&#39;t have attachments. " alt="" coords="245,56,323,83"/>
+<area shape="rect" id="node4" href="$class_eo_c_1_1_doc_1_1_design_doc.html" title="A design document is a special CouchDB document where views, updates, rewrites and many others handle..." alt="" coords="371,5,457,32"/>
+</map>

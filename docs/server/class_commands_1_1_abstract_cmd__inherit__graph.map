@@ -1,0 +1,7 @@
+<map id="AbstractCmd" name="AbstractCmd">
+<area shape="rect" href="$class_commands_1_1_add_fun_cmd.html" title="Evaluates the function received from CouchDB, cheks for syntax errors and finally stores the function..." alt="" coords="5,199,120,300"/>
+<area shape="rect" href="$class_commands_1_1_map_doc_cmd.html" title="Maps a document against every single map function stored into the server." alt="" coords="144,191,293,308"/>
+<area shape="rect" href="$class_commands_1_1_reduce_cmd.html" title="The map command (MapCmd) generates a set of key/value pairs, which can then optionally be reduced to ..." alt="" coords="317,199,432,300"/>
+<area shape="rect" href="$class_commands_1_1_rereduce_cmd.html" title="The map command (MapCmd) generates a set of key/value pairs, which can then optionally be reduced to ..." alt="" coords="456,199,581,300"/>
+<area shape="rect" href="$class_commands_1_1_reset_cmd.html" title="Resets the internal state of the server and makes it forget all previous input." alt="" coords="605,199,720,300"/>
+</map>

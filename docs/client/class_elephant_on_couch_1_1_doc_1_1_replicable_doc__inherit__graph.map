@@ -1,0 +1,5 @@
+<map id="ReplicableDoc" name="ReplicableDoc">
+<area shape="rect" id="node3" href="$class_elephant_on_couch_1_1_doc_1_1_design_doc.html" title="A design document is a special CouchDB document where views, updates, rewrites and many others handle..." alt="" coords="5,859,187,1127"/>
+<area shape="rect" id="node4" href="$class_elephant_on_couch_1_1_doc_1_1_doc.html" title="todo " alt="" coords="211,955,257,1032"/>
+<area shape="rect" id="node2" href="$class_elephant_on_couch_1_1_doc_1_1_abstract_doc.html" title="The abstract document is the ancestor of the other document classes. This class encapsulates common p..." alt="" coords="59,6,271,509"/>
+</map>

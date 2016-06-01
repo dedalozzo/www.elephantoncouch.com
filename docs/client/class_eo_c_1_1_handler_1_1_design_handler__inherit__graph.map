@@ -1,0 +1,10 @@
+<map id="DesignHandler" name="DesignHandler">
+<area shape="rect" id="node3" href="$class_eo_c_1_1_handler_1_1_filter_handler.html" title="{FilterHandler\n|+ FILTERS\l&#45; $name\l|+ __construct()\l+ getName()\l+ setName()\l+ isConsistent()\l+ asArray()\l+ getSection()\l}" alt="" coords="5,366,120,531"/>
+<area shape="rect" id="node4" href="$class_eo_c_1_1_handler_1_1_list_handler.html" title="{ListHandler\n|+ LISTS\l&#45; $name\l|+ __construct()\l+ getName()\l+ setName()\l+ isConsistent()\l+ asArray()\l+ getSection()\l}" alt="" coords="144,366,259,531"/>
+<area shape="rect" id="node5" href="$class_eo_c_1_1_handler_1_1_rewrite_handler.html" title="{RewriteHandler\n|+ REWRITES\l&#45; $name\l|+ __construct()\l+ getName()\l+ setName()\l+ isConsistent()\l+ asArray()\l+ getSection()\l}" alt="" coords="283,366,397,531"/>
+<area shape="rect" id="node6" href="$class_eo_c_1_1_handler_1_1_show_handler.html" title="{ShowHandler\n|+ SHOWS\l&#45; $name\l|+ __construct()\l+ getName()\l+ setName()\l+ isConsistent()\l+ asArray()\l+ getSection()\l}" alt="" coords="421,366,536,531"/>
+<area shape="rect" id="node7" href="$class_eo_c_1_1_handler_1_1_update_handler.html" title="{UpdateHandler\n|+ UPDATES\l&#45; $name\l|+ __construct()\l+ getName()\l+ setName()\l+ isConsistent()\l+ asArray()\l+ getSection()\l}" alt="" coords="560,366,675,531"/>
+<area shape="rect" id="node8" href="$class_eo_c_1_1_handler_1_1_validate_doc_update_handler.html" title="This handler let you define a validation function, so every request to create or update a document is..." alt="" coords="699,359,895,539"/>
+<area shape="rect" id="node9" href="$class_eo_c_1_1_handler_1_1_view_handler.html" title="This handler let you create a CouchDB view. " alt="" coords="919,285,1118,612"/>
+<area shape="rect" id="node2" href="$interface_eo_c_1_1_handler_1_1_i_handler.html" title="All the concrete Design Handlers must implement this interface. " alt="" coords="421,5,536,112"/>
+</map>

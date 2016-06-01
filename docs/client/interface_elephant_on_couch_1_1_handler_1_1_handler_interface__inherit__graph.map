@@ -1,0 +1,10 @@
+<map id="HandlerInterface" name="HandlerInterface">
+<area shape="rect" id="node2" href="$class_elephant_on_couch_1_1_handler_1_1_design_handler.html" title="This class defines the interface for all the concrete CouchDB&#39;s handlers. " alt="" coords="458,160,573,237"/>
+<area shape="rect" id="node3" href="$class_elephant_on_couch_1_1_handler_1_1_filter_handler.html" title="todo " alt="" coords="5,425,131,591"/>
+<area shape="rect" id="node4" href="$class_elephant_on_couch_1_1_handler_1_1_list_handler.html" title="todo " alt="" coords="155,425,280,591"/>
+<area shape="rect" id="node5" href="$class_elephant_on_couch_1_1_handler_1_1_rewrite_handler.html" title="todo " alt="" coords="304,425,429,591"/>
+<area shape="rect" id="node6" href="$class_elephant_on_couch_1_1_handler_1_1_show_handler.html" title="todo " alt="" coords="453,425,579,591"/>
+<area shape="rect" id="node7" href="$class_elephant_on_couch_1_1_handler_1_1_update_handler.html" title="todo " alt="" coords="603,425,728,591"/>
+<area shape="rect" id="node8" href="$class_elephant_on_couch_1_1_handler_1_1_validate_doc_update_handler.html" title="This handler let you define a validation function, so every request to create or update a document is..." alt="" coords="753,418,959,598"/>
+<area shape="rect" id="node9" href="$class_elephant_on_couch_1_1_handler_1_1_view_handler.html" title="This handler let you create a CouchDB view. " alt="" coords="983,286,1192,730"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_eo_c_1_1_exception_1_1_bad_response_exception.html" title="Exception thrown when a bad Response is received. " alt="" coords="5,56,169,83"/>
+<area shape="rect" id="node2" href="$class_eo_c_1_1_exception_1_1_client_error_exception.html" title="Exception thrown when a client error is encountered (4xx codes) " alt="" coords="243,5,387,32"/>
+<area shape="rect" id="node3" href="$class_eo_c_1_1_exception_1_1_server_error_exception.html" title="Exception thrown when a server error is encountered (5xx codes) " alt="" coords="241,56,390,83"/>
+<area shape="rect" id="node4" href="$class_eo_c_1_1_exception_1_1_unknown_response_exception.html" title="Exception thrown when an unknown response is encountered (&gt; 600 codes) " alt="" coords="217,107,413,133"/>
+</map>

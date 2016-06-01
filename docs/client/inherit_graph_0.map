@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_eo_c_1_1_opt_1_1_abstract_opts.html" title="Superclass of all options classes. " alt="" coords="5,81,104,108"/>
+<area shape="rect" id="node2" href="$class_eo_c_1_1_opt_1_1_changes_feed_opts.html" title="To change the feed type, set a different timeout, etc, you can create a ChangesFeedOpts instance and ..." alt="" coords="159,5,292,32"/>
+<area shape="rect" id="node3" href="$class_eo_c_1_1_opt_1_1_db_updates_feed_opts.html" title="To change the feed type, set a different timeout, etc, you can create a DbUpdatesFeedOpts instance an..." alt="" coords="152,56,299,83"/>
+<area shape="rect" id="node4" href="$class_eo_c_1_1_opt_1_1_doc_opts.html" title="To retrieve additional information about document, you can create a DocOpts instance and pass it as p..." alt="" coords="189,107,262,133"/>
+<area shape="rect" id="node5" href="$class_eo_c_1_1_opt_1_1_view_query_opts.html" title="To set the query arguments you must create an instance of this class. Use it when you query a CouchDB..." alt="" coords="167,157,283,184"/>
+</map>

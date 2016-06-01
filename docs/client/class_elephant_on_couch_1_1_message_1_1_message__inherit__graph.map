@@ -1,0 +1,4 @@
+<map id="Message" name="Message">
+<area shape="rect" id="node2" href="$class_elephant_on_couch_1_1_message_1_1_request.html" title="This class represents an HTTP request. Since CouchDB is a RESTful server, we need make requests throu..." alt="" coords="5,710,291,1535"/>
+<area shape="rect" id="node3" href="$class_elephant_on_couch_1_1_message_1_1_response.html" title="After receiving and interpreting a request message, a server responds with an HTTP response message..." alt="" coords="315,673,565,1572"/>
+</map>

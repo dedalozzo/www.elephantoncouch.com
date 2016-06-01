@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['unauthorized_5fsc',['UNAUTHORIZED_SC',['../class_eo_c_1_1_message_1_1_response.html#adbf56a284e004ffd521b1859aa2933c9',1,'EoC::Message::Response']]],
+  ['unknownresponseexception',['UnknownResponseException',['../class_eo_c_1_1_exception_1_1_unknown_response_exception.html',1,'EoC::Exception']]],
+  ['unknownresponseexception_2ephp',['UnknownResponseException.php',['../_unknown_response_exception_8php.html',1,'']]],
+  ['unsetid',['unsetId',['../interface_eo_c_1_1_doc_1_1_i_doc.html#aab838b718fe6d9927bd86c84bbbc3c84',1,'EoC::Doc::IDoc']]],
+  ['unsetmetadata',['unsetMetadata',['../class_eo_c_1_1_doc_1_1_abstract_doc.html#ae8b386e3ac75ab202bc87ef80732d85b',1,'EoC::Doc::AbstractDoc']]],
+  ['unsetopt',['unsetOpt',['../class_eo_c_1_1_opt_1_1_view_query_opts.html#a6ed85b997338ddca2a7c1327deecd101',1,'EoC::Opt::ViewQueryOpts']]],
+  ['unsupported_5fmedia_5ftype_5fsc',['UNSUPPORTED_MEDIA_TYPE_SC',['../class_eo_c_1_1_message_1_1_response.html#af4aaa3034e38b7e4f9b7cbc1e5ab51c6',1,'EoC::Message::Response']]],
+  ['updatehandler',['UpdateHandler',['../class_eo_c_1_1_handler_1_1_update_handler.html',1,'EoC::Handler']]],
+  ['updatehandler_2ephp',['UpdateHandler.php',['../_update_handler_8php.html',1,'']]],
+  ['upgrade_5fhf',['UPGRADE_HF',['../class_eo_c_1_1_message_1_1_message.html#a5caf5a16b07cba645c29d86e86c4cbda',1,'EoC\Message\Message\UPGRADE_HF()'],['../class_eo_c_1_1_message_1_1_request.html#a5caf5a16b07cba645c29d86e86c4cbda',1,'EoC\Message\Request\UPGRADE_HF()']]],
+  ['usebuiltinreducefncount',['useBuiltInReduceFnCount',['../class_eo_c_1_1_handler_1_1_view_handler.html#a22d9c8fad83f6cdef6c582ab19548c38',1,'EoC::Handler::ViewHandler']]],
+  ['usebuiltinreducefnstats',['useBuiltInReduceFnStats',['../class_eo_c_1_1_handler_1_1_view_handler.html#a33cc9113372ca414e311cba6e29fffcf',1,'EoC::Handler::ViewHandler']]],
+  ['usebuiltinreducefnsum',['useBuiltInReduceFnSum',['../class_eo_c_1_1_handler_1_1_view_handler.html#a2cf493c133a6192688306e253e031473',1,'EoC::Handler::ViewHandler']]],
+  ['user_5fagent_5fhf',['USER_AGENT_HF',['../class_eo_c_1_1_message_1_1_request.html#a38258840a2f3a8706009e4e83da08fb3',1,'EoC::Message::Request']]],
+  ['user_5fagent_5fname',['USER_AGENT_NAME',['../class_eo_c_1_1_couch.html#a514e307e21fe4477f8c3108d21460cc2',1,'EoC::Couch']]],
+  ['uuid',['UUID',['../class_eo_c_1_1_generator_1_1_u_u_i_d.html',1,'EoC::Generator']]],
+  ['uuid_2ephp',['UUID.php',['../_u_u_i_d_8php.html',1,'']]]
+];

@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_eo_c_1_1_message_1_1_message.html" title="An HTTP Message can either be a Request or a Response. This class represents a generic message with c..." alt="" coords="5,31,81,57"/>
+<area shape="rect" id="node2" href="$class_eo_c_1_1_message_1_1_request.html" title="This class represents an HTTP request. Since CouchDB is a RESTful server, we need make requests throu..." alt="" coords="135,5,207,32"/>
+<area shape="rect" id="node3" href="$class_eo_c_1_1_message_1_1_response.html" title="After receiving and interpreting a request message, a server responds with an HTTP response message..." alt="" coords="129,56,212,83"/>
+</map>

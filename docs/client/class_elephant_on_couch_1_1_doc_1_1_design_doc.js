@@ -1,0 +1,25 @@
+var class_elephant_on_couch_1_1_doc_1_1_design_doc =
+[
+    [ "addAttachment", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#ab7ebe7fe61e3f257719cd253ab501139", null ],
+    [ "addHandler", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a09a60db67da83cb0c5dab443447de9bd", null ],
+    [ "asArray", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a12b8efb717cb31322bfa4d1d75146979", null ],
+    [ "asJson", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a76381dbee9d69057e040452e7590daf0", null ],
+    [ "create", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a45592ac787c77ed31af6ceba4a06e56e", null ],
+    [ "fixDocId", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a07636f00ebc271721b3d0d628627bcca", null ],
+    [ "getAttachments", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#aa91862c4e237ee5b53083f41633babb6", null ],
+    [ "getHandlerAttributes", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a1af16771a04ec3c88444ce8ad977594b", null ],
+    [ "getId", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a12251d0c022e9e21c137a105ff683f13", null ],
+    [ "getLocalSequence", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a78fb77e21c2b2b2cf813d4a108edf617", null ],
+    [ "getPath", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a30c5c67b2bf8e2e2ccc7e361faa20afe", null ],
+    [ "hasType", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#ac209e9f3cba39f3c5adf16ccfd4df2a9", null ],
+    [ "issetId", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a003d17e36d36dd3a3c78443bff5fa947", null ],
+    [ "issetLocalSequence", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#ad4795bbcd629ad1c0a396846c94434ae", null ],
+    [ "removeAttachment", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a722f8fbe32a405bad55aa15251730036", null ],
+    [ "removeHandler", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a89a7d46e1ded36aef610d0d048e6b2fc", null ],
+    [ "resetHandlers", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a86f4aa318d94a9b0dbcb311bcab99abf", null ],
+    [ "setClass", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#ab27778accf281f85534f59cf39ff8782", null ],
+    [ "setId", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#aa664eee45a9eb336b581131cb0ac667d", null ],
+    [ "setType", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a66a90ba0873d37237743c9e80d9a190c", null ],
+    [ "unsetId", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#aab838b718fe6d9927bd86c84bbbc3c84", null ],
+    [ "$language", "class_elephant_on_couch_1_1_doc_1_1_design_doc.html#a6a0af5c3ac1d07f9a73613ec91f424ce", null ]
+];

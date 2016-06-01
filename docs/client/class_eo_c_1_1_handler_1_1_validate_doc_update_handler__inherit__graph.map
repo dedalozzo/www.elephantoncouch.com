@@ -1,0 +1,4 @@
+<map id="ValidateDocUpdateHandler" name="ValidateDocUpdateHandler">
+<area shape="rect" id="node2" href="$class_eo_c_1_1_handler_1_1_design_handler.html" title="This class defines the interface for all the concrete CouchDB&#39;s handlers. " alt="" coords="48,160,159,237"/>
+<area shape="rect" id="node3" href="$interface_eo_c_1_1_handler_1_1_i_handler.html" title="All the concrete Design Handlers must implement this interface. " alt="" coords="46,5,161,112"/>
+</map>

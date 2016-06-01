@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['range_5fhf',['RANGE_HF',['../class_eo_c_1_1_message_1_1_request.html#a713579c9eb817f78132d25ef71ecaf68',1,'EoC::Message::Request']]],
+  ['reduce',['reduce',['../class_eo_c_1_1_opt_1_1_view_query_opts.html#a6cac52a9b5c3ca0a1bb833c95d8147fd',1,'EoC::Opt::ViewQueryOpts']]],
+  ['referer_5fhf',['REFERER_HF',['../class_eo_c_1_1_message_1_1_request.html#a9a505bb5f94e3b65f2e677360379b0c9',1,'EoC::Message::Request']]],
+  ['refresh_5fhf',['REFRESH_HF',['../class_eo_c_1_1_message_1_1_response.html#a8a4dc039812a8ba44d7b566acc25ac1e',1,'EoC::Message::Response']]],
+  ['removeattachment',['removeAttachment',['../class_eo_c_1_1_doc_1_1_doc.html#a722f8fbe32a405bad55aa15251730036',1,'EoC::Doc::Doc']]],
+  ['removehandler',['removeHandler',['../class_eo_c_1_1_doc_1_1_design_doc.html#a89a7d46e1ded36aef610d0d048e6b2fc',1,'EoC::Doc::DesignDoc']]],
+  ['removeheaderfield',['removeHeaderField',['../class_eo_c_1_1_message_1_1_message.html#ae2d957b55fcc66865da6b0ef0c4836af',1,'EoC::Message::Message']]],
+  ['request',['Request',['../class_eo_c_1_1_message_1_1_request.html',1,'EoC::Message']]],
+  ['request_2ephp',['Request.php',['../_request_8php.html',1,'']]],
+  ['request_5fentity_5ftoo_5flarge_5fsc',['REQUEST_ENTITY_TOO_LARGE_SC',['../class_eo_c_1_1_message_1_1_response.html#a950c62465e94c9307a627e3d5c9d7e45',1,'EoC::Message::Response']]],
+  ['requested_5frange_5fnot_5fsatisfiable_5fsc',['REQUESTED_RANGE_NOT_SATISFIABLE_SC',['../class_eo_c_1_1_message_1_1_response.html#a5d7af64e244c0f304ce1bdc1053e3b99',1,'EoC::Message::Response']]],
+  ['requesttoken',['requestToken',['../class_eo_c_1_1_couch.html#a0f3299c92cf7281214b4672fe795e86d',1,'EoC::Couch']]],
+  ['reset',['reset',['../class_eo_c_1_1_handler_1_1_view_handler.html#a4a20559544fdf4dcb457e258dc976cf8',1,'EoC\Handler\ViewHandler\reset()'],['../class_eo_c_1_1_opt_1_1_abstract_opts.html#a4a20559544fdf4dcb457e258dc976cf8',1,'EoC\Opt\AbstractOpts\reset()']]],
+  ['resethandlers',['resetHandlers',['../class_eo_c_1_1_doc_1_1_design_doc.html#a86f4aa318d94a9b0dbcb311bcab99abf',1,'EoC::Doc::DesignDoc']]],
+  ['resetmetadata',['resetMetadata',['../class_eo_c_1_1_doc_1_1_abstract_doc.html#a0cddc78a1e8a6e729cd784a91e42d7e8',1,'EoC::Doc::AbstractDoc']]],
+  ['response',['Response',['../class_eo_c_1_1_message_1_1_response.html',1,'EoC::Message']]],
+  ['response_2ephp',['Response.php',['../_response_8php.html',1,'']]],
+  ['restartserver',['restartServer',['../class_eo_c_1_1_couch.html#ab02a41e884bfeb24a3d0aa1062211dfb',1,'EoC::Couch']]],
+  ['retry_5fafter_5fhf',['RETRY_AFTER_HF',['../class_eo_c_1_1_message_1_1_response.html#ae775ce8cdda2eab41b10f2d54f5e5e0b',1,'EoC::Message::Response']]],
+  ['reverseorderofresults',['reverseOrderOfResults',['../class_eo_c_1_1_opt_1_1_changes_feed_opts.html#aafcf036547e9a295e7070a4310d2c521',1,'EoC\Opt\ChangesFeedOpts\reverseOrderOfResults()'],['../class_eo_c_1_1_opt_1_1_view_query_opts.html#aafcf036547e9a295e7070a4310d2c521',1,'EoC\Opt\ViewQueryOpts\reverseOrderOfResults()']]],
+  ['revs_5flimit',['REVS_LIMIT',['../class_eo_c_1_1_couch.html#adb5d20a44e499e78e3b150229aac3773',1,'EoC::Couch']]],
+  ['rewritehandler',['RewriteHandler',['../class_eo_c_1_1_handler_1_1_rewrite_handler.html',1,'EoC::Handler']]],
+  ['rewritehandler_2ephp',['RewriteHandler.php',['../_rewrite_handler_8php.html',1,'']]],
+  ['rollback',['rollback',['../class_eo_c_1_1_couch.html#afa549adf79e3f8c09fe8f903dd5fbfa7',1,'EoC::Couch']]]
+];

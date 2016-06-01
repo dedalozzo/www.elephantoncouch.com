@@ -1,0 +1,5 @@
+<map id="DesignDoc" name="DesignDoc">
+<area shape="rect" id="node2" href="$class_eo_c_1_1_doc_1_1_doc.html" title="Standard documents are replicable documents. " alt="" coords="5,608,183,876"/>
+<area shape="rect" id="node3" href="$class_eo_c_1_1_doc_1_1_abstract_doc.html" title="The abstract document is the ancestor of the other document classes. " alt="" coords="17,263,171,560"/>
+<area shape="rect" id="node4" href="$interface_eo_c_1_1_doc_1_1_i_doc.html" title="To become persistent a class must implement at least this interface. " alt="" coords="47,5,141,215"/>
+</map>
